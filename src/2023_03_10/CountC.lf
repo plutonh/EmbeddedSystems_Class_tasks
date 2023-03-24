@@ -1,0 +1,27 @@
+target C {
+    timeout: 5sec
+   }
+   reactor Counter(offset: time(0), period: time(1 sec),
+   stride: int(1)){
+    state count:int(0)
+    output out:int
+    timer t(offset, period)
+    reaction (t) -> out {=
+    lf_set(out, self->count);
+    self->count += self->stride;
+    =}
+   }
+   reactor Printer{
+    input in:int
+    reaction (in) {=
+    lf_print("Hello World! %d\n", in->value);
+    =}
+    reaction (shutdown) {=
+    lf_print("Shutdown Invoked!\n");
+    =}
+   }
+   main reactor CountC{
+    c = new Counter(stride = 5)
+    p = new Printer()
+    c.out -> p.in
+   }

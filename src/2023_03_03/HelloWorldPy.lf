@@ -1,0 +1,16 @@
+target Python
+
+reactor HelloWorld2 {
+
+    reaction(startup) {=
+    print("Hello World.")
+    =}
+
+    reaction(shutdown) {=
+    print("Shutdown invoked.")
+    =}
+}
+
+main reactor HelloWorldPy {
+    a = new HelloWorld2()
+}

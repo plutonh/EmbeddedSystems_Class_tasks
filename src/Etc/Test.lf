@@ -1,0 +1,32 @@
+target C;
+
+reactor Foo {
+    input dbl:bool;
+    input inc:int
+    state s:int(1);
+    reaction(dbl) {=
+        self->s += 2;
+    =}
+    reaction(inc) {=
+        self->s += inc->value;
+        printf("%d\n", self->s);
+    =}
+}
+
+reactor Baz {
+    input in:bool;
+    output out:bool;
+    reaction(in) -> out {=
+        lf_set(out, in);
+    =}
+}
+
+main reactor Test {
+    f = new Foo();
+    p = new Baz();
+    p.out -> f.dbl;
+    reaction (startup) -> f.inc, p.in {=
+        lf_set(p.in, true);
+        lf_set(f.inc, 1);
+    =}
+}

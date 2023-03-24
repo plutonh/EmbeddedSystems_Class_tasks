@@ -1,0 +1,26 @@
+target Python {
+    timeout: 5 sec,
+   }
+   reactor Count(offset(0), period(1 sec), stride(0)) {
+    state count(0)
+    output out
+    timer t(offset, period)
+    reaction(t) -> out {=
+    out.set( self.count)
+    self.count += self.stride
+    =}
+   }
+   reactor Print {
+    input c
+    reaction(c) {=
+    print("Hello World! ", c.value)
+    =}
+    reaction(shutdown) {=
+    print("Shutdown Invoked ")
+    =}
+   }
+   main reactor CountPy {
+    count = new Count(stride = 5)
+    test = new Print()
+    count.out -> test.c
+   }

@@ -1,0 +1,95 @@
+target C{
+    flags: "-lm"
+}
+
+reactor PendulumController {
+    preamble {=
+        #include <math.h>
+
+        double sign_2(double x) {
+            return (x > 0.0) - (x < 0.0); 
+        }
+    =}
+
+    input theta:double;    // Pendulum angle.
+    input d_theta:double;  // Pendulum angular velocity.
+    input phi:double;      // Arm angle.
+    input d_phi:double;    // Arm angular velocity.
+
+    output u:double;
+
+    state ci1:double(-1.04945717118225);
+    state ci2:double(-0.20432286791216);
+    state ci3:double(-0.00735846749875);
+    state ci4:double(-0.00735846749875);
+    state si1:double(-1.70871686211144);
+    state si2:double(-0.30395427746831);
+    state si3:double(-0.03254225945714);
+    state si4:double(-0.05808270221773);
+    state ph2:double(-7.0124562);
+
+    state Energy:double;
+    state Control:double;
+    state phi_variable:double;
+
+reaction(theta, d_theta, phi, d_phi) -> u {=
+    self->Energy  = 0.5 * pow(d_theta -> value, 2) / pow(6.3, 2) + 
+                    cos(theta -> value) - 1;
+    if(fabs(theta -> value) < 0.2) {
+        self->phi_variable = phi -> value;
+        self->Control = -1 * (theta -> value * self -> ci1 + d_theta -> value * 
+                        self -> ci2 + (phi -> value - self -> ph2) * self -> ci3 + 
+                        d_phi -> value * self -> ci4);
+    }
+    else {
+        self->Control = sign_2(self->Energy) * sign_2(d_theta -> value * 
+                        cos(theta -> value)) * fmin(fabs(0.5 * self->Energy), 0.5);
+    }
+    if(fabs(d_phi -> value) < 0.05) {
+        self->phi_variable = phi -> value;
+        self->Control = -1 * (theta -> value * self -> si1 + d_theta -> value * 
+                        self -> si2 + (phi -> value - self->phi_variable) * 
+                        self -> si3 + d_phi -> value * self -> si4);
+    }
+    lf_set(u, self->Control);
+=}
+
+    // reaction(theta, d_theta, startup) -> u, a {= // Swing-up
+    //     self->Energy  = 0.5 * pow(d_theta -> value, 2) / pow(6.3, 2) + 
+    //                     cos(theta -> value) - 1;
+    //     self->Control = sign_2(self->Energy) * sign_2(d_theta -> value * 
+    //                     cos(theta -> value)) * fmin(fabs(0.5 * self->Energy), 0.5);
+    //     lf_set(u, self->Control);
+    //     if(fabs(theta -> value) < 0.2) {
+    //         lf_schedule(a, SEC(0.1));
+    //     }
+    // =}
+
+    // reaction(theta, d_theta, phi, d_phi, a) -> u, b {= // Catch
+    //     self->Control = -1 * (theta -> value * self -> ci1 + d_theta -> value * 
+    //                     self -> ci2 + (phi -> value - self -> ph2) * self -> ci3 + 
+    //                     d_phi -> value * self -> ci4);
+    //     lf_set(u, self->Control);
+    //     if(fabs(d_phi -> value) < 0.05) {
+    //         self->phi_variable = phi -> value;
+    //         lf_schedule(b, SEC(0.1));
+    //     }
+    // =}
+
+    // reaction(theta, d_theta, phi, d_phi, b) -> u, a {= // Stabilize
+    //     self->Control = -1 * (theta -> value * self -> si1 + d_theta -> value * 
+    //                     self -> si2 + (phi -> value - self->phi_variable) * 
+    //                     self -> si3 + d_phi -> value * self -> si4);
+    //     lf_set(u, self->Control);
+    //     if(fabs(theta -> value) > 0.2) {
+    //         lf_schedule(a, SEC(0.1));
+    //     }
+    // =}
+
+    // reaction(theta, d_theta, phi, d_phi, startup) -> u {= // Stabilize Test
+    //     self->Control = -1 * (theta -> value * self -> si1 + d_theta -> value * 
+    //                     self -> si2 + (phi -> value - phi -> value) * 
+    //                     self -> si3 + d_phi -> value * self -> si4);
+    //     lf_set(u, self->Control);
+    // =}
+}

@@ -1,0 +1,36 @@
+target Python {
+    timeout: 3 sec
+   }
+   reactor Count(offset(0), period(1 sec), stride(1)) {
+    state count(1)
+    output out
+    timer t(offset, period)
+    reaction(t) -> out {=
+    out.set(self.count)
+    self.count += self.stride
+    =}
+   }
+   reactor Test(stride(0), num_inputs(1)) {
+    input c
+    state i(1)
+    state num_reacted(0)
+    reaction(c) {=
+    print("Received ", c.value)
+    if c.value != self.i:
+     sys.stderr.write("ERROR: Expected {:d} but got {:d}\n.".format(self.i, c.value))
+     exit(1)
+    self.i += self.stride
+    self.num_reacted += 1
+    =}
+    reaction(shutdown) {=
+    if self.num_inputs != self.num_reacted:
+     sys.stderr.write("ERROR: Test should have reacted {:d} times, but reacted {:d} times.\n".format(self.num_inputs, self.num_reacted))
+     exit(2)
+    =}
+   }
+   main reactor CountTestPy {
+    count = new Count(stride = 3)
+    test = new Test(stride = 3, num_inputs = 4)
+    count.out -> test.c
+   }
+   

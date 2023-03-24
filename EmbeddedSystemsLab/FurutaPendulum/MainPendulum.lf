@@ -1,0 +1,23 @@
+target C{
+    flags: "-lm"
+}
+
+import PendulumSimulation from "PendulumSimulation.lf"
+import PendulumController from "PendulumController.lf"
+import Print from "Print.lf"
+
+main reactor MainPendulum {
+    P1 = new PendulumSimulation();
+    //P1 = new PendulumSimulation(initial_theta = 0.1);
+    P2 = new PendulumController();
+    P3 = new Print();
+
+    P1.theta -> P2.theta;
+    P1.theta -> P3.theta;
+    P1.d_theta -> P2.d_theta;
+    P1.d_phi -> P2.d_phi;
+    P1.phi -> P2.phi;
+    P1.phi -> P3.phi
+    P2.u -> P1.u;
+    P2.u -> P3.control;
+}
