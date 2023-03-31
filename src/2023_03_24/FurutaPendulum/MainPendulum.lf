@@ -2,22 +2,23 @@ target C{
     flags: "-lm"
 }
 
+// Contain instances of other reactors
 import PendulumSimulation from "PendulumSimulation.lf"
 import PendulumController from "PendulumController.lf"
 import Print from "Print.lf"
 
 main reactor MainPendulum {
-    P1 = new PendulumSimulation();
-    //P1 = new PendulumSimulation(initial_theta = 0.1);
-    P2 = new PendulumController();
-    P3 = new Print();
+    P1 = new PendulumSimulation(); // Instantiate PendulmSimulation as P1
+    P2 = new Print();              // Instantiate Print as P2
+    P3 = new PendulumController(); // Instantiate PendulmController as P3
 
+    // Connecting each port
     P1.theta -> P2.theta;
     P1.theta -> P3.theta;
-    P1.d_theta -> P2.d_theta;
-    P1.d_phi -> P2.d_phi;
+    P1.d_theta -> P3.d_theta;
+    P1.d_phi -> P3.d_phi;
     P1.phi -> P2.phi;
-    P1.phi -> P3.phi
-    P2.u -> P1.u;
-    P2.u -> P3.control;
+    P1.phi -> P3.phi;
+    P3.u -> P2.control;
+    P3.u -> P1.u;
 }

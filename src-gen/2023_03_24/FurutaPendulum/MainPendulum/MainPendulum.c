@@ -12,8 +12,10 @@ int main(int argc, char* argv[]) {
 void _lf_set_default_command_line_options() {}
 // =============== START reactor class PendulumSimulation
 // *********** From the preamble, verbatim:
+#line 50 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumSimulation.lf"
 #include <math.h>
     
+
 // *********** End of preamble.
 typedef struct {
     double value;
@@ -71,42 +73,79 @@ typedef struct {
 } pendulumsimulation_d_phi_t;
 typedef struct {
     struct self_base_t base;
+    #line 41 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumSimulation.lf"
     double initial_theta;
+    #line 42 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumSimulation.lf"
     interval_t sample_period;
+    #line 43 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumSimulation.lf"
     double g;
+    #line 44 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumSimulation.lf"
     double alpha;
+    #line 45 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumSimulation.lf"
     double beta;
+    #line 46 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumSimulation.lf"
     double gamma;
+    #line 47 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumSimulation.lf"
     double epsilon;
+    #line 60 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumSimulation.lf"
     double* x;
+    #line 61 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumSimulation.lf"
     bool first;
+    #line 62 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumSimulation.lf"
     double latest_u;
+    #line 52 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumSimulation.lf"
     pendulumsimulation_u_t* _lf_u;
+    #line 52 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumSimulation.lf"
     // width of -2 indicates that it is not a multiport.
+    #line 52 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumSimulation.lf"
     int _lf_u_width;
+    #line 52 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumSimulation.lf"
     // Default input (in case it does not get connected)
+    #line 52 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumSimulation.lf"
     pendulumsimulation_u_t _lf_default__u;
+    #line 53 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumSimulation.lf"
     pendulumsimulation_d_t* _lf_d;
+    #line 53 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumSimulation.lf"
     // width of -2 indicates that it is not a multiport.
+    #line 53 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumSimulation.lf"
     int _lf_d_width;
+    #line 53 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumSimulation.lf"
     // Default input (in case it does not get connected)
+    #line 53 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumSimulation.lf"
     pendulumsimulation_d_t _lf_default__d;
+    #line 55 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumSimulation.lf"
     pendulumsimulation_theta_t _lf_theta;
+    #line 55 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumSimulation.lf"
     int _lf_theta_width;
+    #line 56 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumSimulation.lf"
     pendulumsimulation_d_theta_t _lf_d_theta;
+    #line 56 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumSimulation.lf"
     int _lf_d_theta_width;
+    #line 57 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumSimulation.lf"
     pendulumsimulation_phi_t _lf_phi;
+    #line 57 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumSimulation.lf"
     int _lf_phi_width;
+    #line 58 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumSimulation.lf"
     pendulumsimulation_d_phi_t _lf_d_phi;
+    #line 58 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumSimulation.lf"
     int _lf_d_phi_width;
+    #line 66 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumSimulation.lf"
     reaction_t _lf__reaction_0;
+    #line 156 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumSimulation.lf"
     reaction_t _lf__reaction_1;
+    #line 169 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumSimulation.lf"
     reaction_t _lf__reaction_2;
+    #line 64 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumSimulation.lf"
     trigger_t _lf__t;
+    #line 64 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumSimulation.lf"
     reaction_t* _lf__t_reactions[1];
+    #line 52 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumSimulation.lf"
     trigger_t _lf__u;
+    #line 52 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumSimulation.lf"
     reaction_t* _lf__u_reactions[1];
+    #line 53 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumSimulation.lf"
     trigger_t _lf__d;
+    #line 53 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumSimulation.lf"
     reaction_t* _lf__d_reactions[1];
 } pendulumsimulation_self_t;
 // ***** Start of method declarations.
@@ -121,6 +160,7 @@ void pendulumsimulationreaction_function_0(void* instance_args) {
     pendulumsimulation_phi_t* phi = &self->_lf_phi;
     pendulumsimulation_d_phi_t* d_phi = &self->_lf_d_phi;
     #pragma GCC diagnostic pop
+    #line 67 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumSimulation.lf"
     if (!self->first) {
         // Update the state.
         double x0_dot = self->x[1];
@@ -220,6 +260,7 @@ void pendulumsimulationreaction_function_1(void* instance_args) {
     pendulumsimulation_d_t* d = self->_lf_d;
     int d_width = self->_lf_d_width;
     #pragma GCC diagnostic pop
+    #line 157 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumSimulation.lf"
     // NOTE: If the disturbance is coincident with a sample,
     // then it won't have any effect on theta until the next sample.
     // Hence, this reaction needs to be after the previous.
@@ -242,62 +283,360 @@ void pendulumsimulationreaction_function_2(void* instance_args) {
     pendulumsimulation_u_t* u = self->_lf_u;
     int u_width = self->_lf_u_width;
     #pragma GCC diagnostic pop
+    #line 170 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumSimulation.lf"
     self->latest_u = u->value;
         
 }
 #include "include/ctarget/set_undef.h"
 pendulumsimulation_self_t* new_PendulumSimulation() {
     pendulumsimulation_self_t* self = (pendulumsimulation_self_t*)_lf_new_reactor(sizeof(pendulumsimulation_self_t));
+    #line 52 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumSimulation.lf"
     // Set input by default to an always absent default input.
+    #line 52 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumSimulation.lf"
     self->_lf_u = &self->_lf_default__u;
+    #line 53 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumSimulation.lf"
     // Set input by default to an always absent default input.
+    #line 53 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumSimulation.lf"
     self->_lf_d = &self->_lf_default__d;
+    #line 66 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumSimulation.lf"
     self->_lf__reaction_0.number = 0;
+    #line 66 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumSimulation.lf"
     self->_lf__reaction_0.function = pendulumsimulationreaction_function_0;
+    #line 66 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumSimulation.lf"
     self->_lf__reaction_0.self = self;
+    #line 66 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumSimulation.lf"
     self->_lf__reaction_0.deadline_violation_handler = NULL;
+    #line 66 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumSimulation.lf"
     self->_lf__reaction_0.STP_handler = NULL;
+    #line 66 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumSimulation.lf"
     self->_lf__reaction_0.name = "?";
+    #line 66 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumSimulation.lf"
     self->_lf__reaction_0.mode = NULL;
+    #line 156 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumSimulation.lf"
     self->_lf__reaction_1.number = 1;
+    #line 156 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumSimulation.lf"
     self->_lf__reaction_1.function = pendulumsimulationreaction_function_1;
+    #line 156 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumSimulation.lf"
     self->_lf__reaction_1.self = self;
+    #line 156 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumSimulation.lf"
     self->_lf__reaction_1.deadline_violation_handler = NULL;
+    #line 156 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumSimulation.lf"
     self->_lf__reaction_1.STP_handler = NULL;
+    #line 156 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumSimulation.lf"
     self->_lf__reaction_1.name = "?";
+    #line 156 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumSimulation.lf"
     self->_lf__reaction_1.mode = NULL;
+    #line 169 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumSimulation.lf"
     self->_lf__reaction_2.number = 2;
+    #line 169 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumSimulation.lf"
     self->_lf__reaction_2.function = pendulumsimulationreaction_function_2;
+    #line 169 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumSimulation.lf"
     self->_lf__reaction_2.self = self;
+    #line 169 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumSimulation.lf"
     self->_lf__reaction_2.deadline_violation_handler = NULL;
+    #line 169 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumSimulation.lf"
     self->_lf__reaction_2.STP_handler = NULL;
+    #line 169 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumSimulation.lf"
     self->_lf__reaction_2.name = "?";
+    #line 169 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumSimulation.lf"
     self->_lf__reaction_2.mode = NULL;
+    #line 64 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumSimulation.lf"
     self->_lf__t.last = NULL;
+    #line 64 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumSimulation.lf"
+    #line 64 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumSimulation.lf"
     self->_lf__t_reactions[0] = &self->_lf__reaction_0;
+    #line 64 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumSimulation.lf"
     self->_lf__t.reactions = &self->_lf__t_reactions[0];
+    #line 64 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumSimulation.lf"
     self->_lf__t.number_of_reactions = 1;
     self->_lf__t.is_timer = true;
+    #line 52 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumSimulation.lf"
     self->_lf__u.last = NULL;
+    #line 52 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumSimulation.lf"
+    #line 52 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumSimulation.lf"
     self->_lf__u_reactions[0] = &self->_lf__reaction_2;
+    #line 52 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumSimulation.lf"
     self->_lf__u.reactions = &self->_lf__u_reactions[0];
+    #line 52 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumSimulation.lf"
     self->_lf__u.number_of_reactions = 1;
     self->_lf__u.element_size = sizeof(double);
+    #line 53 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumSimulation.lf"
     self->_lf__d.last = NULL;
+    #line 53 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumSimulation.lf"
+    #line 53 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumSimulation.lf"
     self->_lf__d_reactions[0] = &self->_lf__reaction_1;
+    #line 53 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumSimulation.lf"
     self->_lf__d.reactions = &self->_lf__d_reactions[0];
+    #line 53 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumSimulation.lf"
     self->_lf__d.number_of_reactions = 1;
     self->_lf__d.element_size = sizeof(double);
     return self;
 }
 // =============== END reactor class PendulumSimulation
+// =============== START reactor class Print
+// *********** From the preamble, verbatim:
+#line 9 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/Print.lf"
+#include <math.h>
+#define PI 3.14159265
+
+// Really checks sign. True is 1, False is 0.
+double sign_1(double x) {
+        return (x > 0.0) - (x < 0.0); 
+}
+
+double restrictAngle(double theta) {
+        return((fmod(fabs(theta) + PI, 2 * PI) - PI) * sign_1(theta));
+}
+
+// *********** End of preamble.
+typedef struct {
+    double value;
+    bool is_present;
+    int num_destinations;
+    lf_token_t* token;
+    int length;
+    void (*destructor) (void* value);
+    void* (*copy_constructor) (void* value);
+} print_control_t;
+typedef struct {
+    double value;
+    bool is_present;
+    int num_destinations;
+    lf_token_t* token;
+    int length;
+    void (*destructor) (void* value);
+    void* (*copy_constructor) (void* value);
+} print_theta_t;
+typedef struct {
+    double value;
+    bool is_present;
+    int num_destinations;
+    lf_token_t* token;
+    int length;
+    void (*destructor) (void* value);
+    void* (*copy_constructor) (void* value);
+} print_phi_t;
+typedef struct {
+    struct self_base_t base;
+    #line 23 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/Print.lf"
+    string filename;
+    #line 28 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/Print.lf"
+    FILE* file;
+    #line 24 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/Print.lf"
+    print_control_t* _lf_control;
+    #line 24 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/Print.lf"
+    // width of -2 indicates that it is not a multiport.
+    #line 24 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/Print.lf"
+    int _lf_control_width;
+    #line 24 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/Print.lf"
+    // Default input (in case it does not get connected)
+    #line 24 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/Print.lf"
+    print_control_t _lf_default__control;
+    #line 25 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/Print.lf"
+    print_theta_t* _lf_theta;
+    #line 25 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/Print.lf"
+    // width of -2 indicates that it is not a multiport.
+    #line 25 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/Print.lf"
+    int _lf_theta_width;
+    #line 25 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/Print.lf"
+    // Default input (in case it does not get connected)
+    #line 25 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/Print.lf"
+    print_theta_t _lf_default__theta;
+    #line 26 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/Print.lf"
+    print_phi_t* _lf_phi;
+    #line 26 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/Print.lf"
+    // width of -2 indicates that it is not a multiport.
+    #line 26 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/Print.lf"
+    int _lf_phi_width;
+    #line 26 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/Print.lf"
+    // Default input (in case it does not get connected)
+    #line 26 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/Print.lf"
+    print_phi_t _lf_default__phi;
+    #line 30 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/Print.lf"
+    reaction_t _lf__reaction_0;
+    #line 39 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/Print.lf"
+    reaction_t _lf__reaction_1;
+    #line 50 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/Print.lf"
+    reaction_t _lf__reaction_2;
+    trigger_t _lf__startup;
+    reaction_t* _lf__startup_reactions[1];
+    trigger_t _lf__shutdown;
+    reaction_t* _lf__shutdown_reactions[1];
+    #line 24 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/Print.lf"
+    trigger_t _lf__control;
+    #line 24 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/Print.lf"
+    reaction_t* _lf__control_reactions[1];
+    #line 25 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/Print.lf"
+    trigger_t _lf__theta;
+    #line 25 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/Print.lf"
+    reaction_t* _lf__theta_reactions[1];
+    #line 26 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/Print.lf"
+    trigger_t _lf__phi;
+    #line 26 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/Print.lf"
+    reaction_t* _lf__phi_reactions[1];
+} print_self_t;
+// ***** Start of method declarations.
+// ***** End of method declarations.
+#include "include/ctarget/set.h"
+void printreaction_function_0(void* instance_args) {
+    #pragma GCC diagnostic push
+    #pragma GCC diagnostic ignored "-Wunused-variable"
+    print_self_t* self = (print_self_t*)instance_args;
+    #pragma GCC diagnostic pop
+    #line 31 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/Print.lf"
+    self->file = fopen(self->filename, "w");
+    if(self->file == NULL) {
+        lf_print_error_and_exit("Failed to open file: %s", self->filename);
+    } else {
+        fprintf(self->file, "Time,Control,Theta,Phi\n");
+    }
+        
+}
+#include "include/ctarget/set_undef.h"
+#include "include/ctarget/set.h"
+void printreaction_function_1(void* instance_args) {
+    #pragma GCC diagnostic push
+    #pragma GCC diagnostic ignored "-Wunused-variable"
+    print_self_t* self = (print_self_t*)instance_args;
+    print_control_t* control = self->_lf_control;
+    int control_width = self->_lf_control_width;
+    print_theta_t* theta = self->_lf_theta;
+    int theta_width = self->_lf_theta_width;
+    print_phi_t* phi = self->_lf_phi;
+    int phi_width = self->_lf_phi_width;
+    #pragma GCC diagnostic pop
+    #line 40 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/Print.lf"
+    double t = lf_time_logical_elapsed() / 1.0e9;
+    fprintf(self->file,
+        "%f,%f,%f,%f\n",
+        t,
+        control->value,
+        restrictAngle(theta->value),
+        restrictAngle(phi->value)
+    );
+        
+}
+#include "include/ctarget/set_undef.h"
+#include "include/ctarget/set.h"
+void printreaction_function_2(void* instance_args) {
+    #pragma GCC diagnostic push
+    #pragma GCC diagnostic ignored "-Wunused-variable"
+    print_self_t* self = (print_self_t*)instance_args;
+    #pragma GCC diagnostic pop
+    #line 51 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/Print.lf"
+    fclose(self->file);
+        
+}
+#include "include/ctarget/set_undef.h"
+print_self_t* new_Print() {
+    print_self_t* self = (print_self_t*)_lf_new_reactor(sizeof(print_self_t));
+    #line 24 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/Print.lf"
+    // Set input by default to an always absent default input.
+    #line 24 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/Print.lf"
+    self->_lf_control = &self->_lf_default__control;
+    #line 25 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/Print.lf"
+    // Set input by default to an always absent default input.
+    #line 25 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/Print.lf"
+    self->_lf_theta = &self->_lf_default__theta;
+    #line 26 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/Print.lf"
+    // Set input by default to an always absent default input.
+    #line 26 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/Print.lf"
+    self->_lf_phi = &self->_lf_default__phi;
+    #line 30 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/Print.lf"
+    self->_lf__reaction_0.number = 0;
+    #line 30 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/Print.lf"
+    self->_lf__reaction_0.function = printreaction_function_0;
+    #line 30 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/Print.lf"
+    self->_lf__reaction_0.self = self;
+    #line 30 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/Print.lf"
+    self->_lf__reaction_0.deadline_violation_handler = NULL;
+    #line 30 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/Print.lf"
+    self->_lf__reaction_0.STP_handler = NULL;
+    #line 30 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/Print.lf"
+    self->_lf__reaction_0.name = "?";
+    #line 30 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/Print.lf"
+    self->_lf__reaction_0.mode = NULL;
+    #line 39 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/Print.lf"
+    self->_lf__reaction_1.number = 1;
+    #line 39 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/Print.lf"
+    self->_lf__reaction_1.function = printreaction_function_1;
+    #line 39 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/Print.lf"
+    self->_lf__reaction_1.self = self;
+    #line 39 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/Print.lf"
+    self->_lf__reaction_1.deadline_violation_handler = NULL;
+    #line 39 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/Print.lf"
+    self->_lf__reaction_1.STP_handler = NULL;
+    #line 39 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/Print.lf"
+    self->_lf__reaction_1.name = "?";
+    #line 39 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/Print.lf"
+    self->_lf__reaction_1.mode = NULL;
+    #line 50 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/Print.lf"
+    self->_lf__reaction_2.number = 2;
+    #line 50 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/Print.lf"
+    self->_lf__reaction_2.function = printreaction_function_2;
+    #line 50 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/Print.lf"
+    self->_lf__reaction_2.self = self;
+    #line 50 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/Print.lf"
+    self->_lf__reaction_2.deadline_violation_handler = NULL;
+    #line 50 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/Print.lf"
+    self->_lf__reaction_2.STP_handler = NULL;
+    #line 50 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/Print.lf"
+    self->_lf__reaction_2.name = "?";
+    #line 50 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/Print.lf"
+    self->_lf__reaction_2.mode = NULL;
+    self->_lf__startup_reactions[0] = &self->_lf__reaction_0;
+    self->_lf__startup.last = NULL;
+    self->_lf__startup.reactions = &self->_lf__startup_reactions[0];
+    self->_lf__startup.number_of_reactions = 1;
+    self->_lf__startup.is_timer = false;
+    self->_lf__shutdown_reactions[0] = &self->_lf__reaction_2;
+    self->_lf__shutdown.last = NULL;
+    self->_lf__shutdown.reactions = &self->_lf__shutdown_reactions[0];
+    self->_lf__shutdown.number_of_reactions = 1;
+    self->_lf__shutdown.is_timer = false;
+    #line 24 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/Print.lf"
+    self->_lf__control.last = NULL;
+    #line 24 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/Print.lf"
+    #line 24 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/Print.lf"
+    self->_lf__control_reactions[0] = &self->_lf__reaction_1;
+    #line 24 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/Print.lf"
+    self->_lf__control.reactions = &self->_lf__control_reactions[0];
+    #line 24 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/Print.lf"
+    self->_lf__control.number_of_reactions = 1;
+    self->_lf__control.element_size = sizeof(double);
+    #line 25 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/Print.lf"
+    self->_lf__theta.last = NULL;
+    #line 25 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/Print.lf"
+    #line 25 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/Print.lf"
+    self->_lf__theta_reactions[0] = &self->_lf__reaction_1;
+    #line 25 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/Print.lf"
+    self->_lf__theta.reactions = &self->_lf__theta_reactions[0];
+    #line 25 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/Print.lf"
+    self->_lf__theta.number_of_reactions = 1;
+    self->_lf__theta.element_size = sizeof(double);
+    #line 26 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/Print.lf"
+    self->_lf__phi.last = NULL;
+    #line 26 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/Print.lf"
+    #line 26 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/Print.lf"
+    self->_lf__phi_reactions[0] = &self->_lf__reaction_1;
+    #line 26 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/Print.lf"
+    self->_lf__phi.reactions = &self->_lf__phi_reactions[0];
+    #line 26 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/Print.lf"
+    self->_lf__phi.number_of_reactions = 1;
+    self->_lf__phi.element_size = sizeof(double);
+    return self;
+}
+// =============== END reactor class Print
 // =============== START reactor class PendulumController
 // *********** From the preamble, verbatim:
+#line 7 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumController.lf"
 #include <math.h>
+
 double sign_2(double x) {
     return (x > 0.0) - (x < 0.0); 
 }
     
+
 // *********** End of preamble.
 typedef struct {
     double value;
@@ -345,72 +684,93 @@ typedef struct {
     void* (*copy_constructor) (void* value);
 } pendulumcontroller_u_t;
 typedef struct {
-    trigger_t* trigger;
-    bool is_present;
-    bool has_value;
-    lf_token_t* token;
-} pendulumcontroller_a_t;
-typedef struct {
-    trigger_t* trigger;
-    bool is_present;
-    bool has_value;
-    lf_token_t* token;
-} pendulumcontroller_b_t;
-typedef struct {
     struct self_base_t base;
+    #line 21 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumController.lf"
     double ci1;
+    #line 22 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumController.lf"
     double ci2;
+    #line 23 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumController.lf"
     double ci3;
+    #line 24 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumController.lf"
     double ci4;
+    #line 25 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumController.lf"
     double si1;
+    #line 26 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumController.lf"
     double si2;
+    #line 27 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumController.lf"
     double si3;
+    #line 28 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumController.lf"
     double si4;
+    #line 29 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumController.lf"
     double ph2;
+    #line 31 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumController.lf"
     double Energy;
+    #line 32 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumController.lf"
     double Control;
+    #line 33 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumController.lf"
     double phi_variable;
-    pendulumcontroller_a_t _lf_a;
-    pendulumcontroller_b_t _lf_b;
+    #line 14 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumController.lf"
     pendulumcontroller_theta_t* _lf_theta;
+    #line 14 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumController.lf"
     // width of -2 indicates that it is not a multiport.
+    #line 14 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumController.lf"
     int _lf_theta_width;
+    #line 14 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumController.lf"
     // Default input (in case it does not get connected)
+    #line 14 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumController.lf"
     pendulumcontroller_theta_t _lf_default__theta;
+    #line 15 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumController.lf"
     pendulumcontroller_d_theta_t* _lf_d_theta;
+    #line 15 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumController.lf"
     // width of -2 indicates that it is not a multiport.
+    #line 15 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumController.lf"
     int _lf_d_theta_width;
+    #line 15 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumController.lf"
     // Default input (in case it does not get connected)
+    #line 15 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumController.lf"
     pendulumcontroller_d_theta_t _lf_default__d_theta;
+    #line 16 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumController.lf"
     pendulumcontroller_phi_t* _lf_phi;
+    #line 16 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumController.lf"
     // width of -2 indicates that it is not a multiport.
+    #line 16 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumController.lf"
     int _lf_phi_width;
+    #line 16 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumController.lf"
     // Default input (in case it does not get connected)
+    #line 16 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumController.lf"
     pendulumcontroller_phi_t _lf_default__phi;
+    #line 17 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumController.lf"
     pendulumcontroller_d_phi_t* _lf_d_phi;
+    #line 17 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumController.lf"
     // width of -2 indicates that it is not a multiport.
+    #line 17 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumController.lf"
     int _lf_d_phi_width;
+    #line 17 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumController.lf"
     // Default input (in case it does not get connected)
+    #line 17 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumController.lf"
     pendulumcontroller_d_phi_t _lf_default__d_phi;
+    #line 19 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumController.lf"
     pendulumcontroller_u_t _lf_u;
+    #line 19 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumController.lf"
     int _lf_u_width;
+    #line 35 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumController.lf"
     reaction_t _lf__reaction_0;
-    reaction_t _lf__reaction_1;
-    reaction_t _lf__reaction_2;
-    trigger_t _lf__startup;
-    reaction_t* _lf__startup_reactions[1];
-    trigger_t _lf__a;
-    reaction_t* _lf__a_reactions[1];
-    trigger_t _lf__b;
-    reaction_t* _lf__b_reactions[1];
+    #line 14 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumController.lf"
     trigger_t _lf__theta;
-    reaction_t* _lf__theta_reactions[3];
+    #line 14 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumController.lf"
+    reaction_t* _lf__theta_reactions[1];
+    #line 15 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumController.lf"
     trigger_t _lf__d_theta;
-    reaction_t* _lf__d_theta_reactions[3];
+    #line 15 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumController.lf"
+    reaction_t* _lf__d_theta_reactions[1];
+    #line 16 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumController.lf"
     trigger_t _lf__phi;
-    reaction_t* _lf__phi_reactions[2];
+    #line 16 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumController.lf"
+    reaction_t* _lf__phi_reactions[1];
+    #line 17 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumController.lf"
     trigger_t _lf__d_phi;
-    reaction_t* _lf__d_phi_reactions[2];
+    #line 17 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumController.lf"
+    reaction_t* _lf__d_phi_reactions[1];
 } pendulumcontroller_self_t;
 // ***** Start of method declarations.
 // ***** End of method declarations.
@@ -423,345 +783,109 @@ void pendulumcontrollerreaction_function_0(void* instance_args) {
     int theta_width = self->_lf_theta_width;
     pendulumcontroller_d_theta_t* d_theta = self->_lf_d_theta;
     int d_theta_width = self->_lf_d_theta_width;
-    pendulumcontroller_u_t* u = &self->_lf_u;
-    pendulumcontroller_a_t* a = &self->_lf_a;
-    #pragma GCC diagnostic pop
-    // Swing-up
-           self->Energy  = 0.5 * pow(d_theta -> value, 2) / pow(6.3, 2) + 
-                           cos(theta -> value) - 1;
-           self->Control = sign_2(self->Energy) * sign_2(d_theta -> value * 
-                           cos(theta -> value)) * fmin(fabs(0.5 * self->Energy), 0.5);
-           if(fabs(theta -> value) < 0.2) {
-               lf_schedule(a, 0);
-           }
-       
-}
-#include "include/ctarget/set_undef.h"
-#include "include/ctarget/set.h"
-void pendulumcontrollerreaction_function_1(void* instance_args) {
-    #pragma GCC diagnostic push
-    #pragma GCC diagnostic ignored "-Wunused-variable"
-    pendulumcontroller_self_t* self = (pendulumcontroller_self_t*)instance_args;
-    pendulumcontroller_theta_t* theta = self->_lf_theta;
-    int theta_width = self->_lf_theta_width;
-    pendulumcontroller_d_theta_t* d_theta = self->_lf_d_theta;
-    int d_theta_width = self->_lf_d_theta_width;
     pendulumcontroller_phi_t* phi = self->_lf_phi;
     int phi_width = self->_lf_phi_width;
     pendulumcontroller_d_phi_t* d_phi = self->_lf_d_phi;
     int d_phi_width = self->_lf_d_phi_width;
-    // Expose the action struct as a local variable whose name matches the action name.
-    pendulumcontroller_a_t* a = &self->_lf_a;
-    // Set the fields of the action struct to match the current trigger.
-    a->is_present = (bool)self->_lf__a.status;
-    a->has_value = ((self->_lf__a.token) != NULL && (self->_lf__a.token)->value != NULL);
-    a->token = (self->_lf__a.token);
     pendulumcontroller_u_t* u = &self->_lf_u;
-    pendulumcontroller_b_t* b = &self->_lf_b;
     #pragma GCC diagnostic pop
-    // Catch
-           self->Control = -1 * (theta -> value * self -> ci1 + d_theta -> value * 
-                           self -> ci2 + (phi -> value - self -> ph2) * self -> ci3 + 
-                           d_phi -> value * self -> ci4);
-           if(fabs(d_theta -> value) < 0.05) {
-               self->phi_variable = phi -> value;
-               lf_schedule(b, 0);
-           }
-       
-}
-#include "include/ctarget/set_undef.h"
-#include "include/ctarget/set.h"
-void pendulumcontrollerreaction_function_2(void* instance_args) {
-    #pragma GCC diagnostic push
-    #pragma GCC diagnostic ignored "-Wunused-variable"
-    pendulumcontroller_self_t* self = (pendulumcontroller_self_t*)instance_args;
-    pendulumcontroller_theta_t* theta = self->_lf_theta;
-    int theta_width = self->_lf_theta_width;
-    pendulumcontroller_d_theta_t* d_theta = self->_lf_d_theta;
-    int d_theta_width = self->_lf_d_theta_width;
-    pendulumcontroller_phi_t* phi = self->_lf_phi;
-    int phi_width = self->_lf_phi_width;
-    pendulumcontroller_d_phi_t* d_phi = self->_lf_d_phi;
-    int d_phi_width = self->_lf_d_phi_width;
-    // Expose the action struct as a local variable whose name matches the action name.
-    pendulumcontroller_b_t* b = &self->_lf_b;
-    // Set the fields of the action struct to match the current trigger.
-    b->is_present = (bool)self->_lf__b.status;
-    b->has_value = ((self->_lf__b.token) != NULL && (self->_lf__b.token)->value != NULL);
-    b->token = (self->_lf__b.token);
-    pendulumcontroller_u_t* u = &self->_lf_u;
-    pendulumcontroller_a_t* a = &self->_lf_a;
-    #pragma GCC diagnostic pop
-    // Stabilize
-           self->Control = -1 * (theta -> value * self -> si1 + d_theta -> value * 
-                           self -> si2 + (phi -> value - self->phi_variable) * 
-                           self -> si3 + d_phi -> value * self -> si4);
-           if(fabs(theta -> value) > 0.2) {
-               lf_schedule(a, 0);
-           }
-       
+    #line 36 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumController.lf"
+    self->Energy  = 0.5 * pow(d_theta -> value, 2) / pow(6.3, 2) + 
+                    cos(theta -> value) - 1;
+    if(fabs(theta -> value) < 0.2) {
+        self->phi_variable = phi -> value;
+        self->Control = -1 * (theta -> value * self -> ci1 + d_theta -> value * 
+                        self -> ci2 + (phi -> value - self -> ph2) * self -> ci3 + 
+                        d_phi -> value * self -> ci4);
+    }
+    else {
+        self->Control = sign_2(self->Energy) * sign_2(d_theta -> value * 
+                        cos(theta -> value)) * fmin(fabs(0.5 * self->Energy), 0.5);
+    }
+    if(fabs(d_phi -> value) < 0.05) {
+        self->phi_variable = phi -> value;
+        self->Control = -1 * (theta -> value * self -> si1 + d_theta -> value * 
+                        self -> si2 + (phi -> value - self->phi_variable) * 
+                        self -> si3 + d_phi -> value * self -> si4);
+    }
+    lf_set(u, self->Control);
 }
 #include "include/ctarget/set_undef.h"
 pendulumcontroller_self_t* new_PendulumController() {
     pendulumcontroller_self_t* self = (pendulumcontroller_self_t*)_lf_new_reactor(sizeof(pendulumcontroller_self_t));
-    self->_lf_a.trigger = &self->_lf__a;
-    self->_lf_b.trigger = &self->_lf__b;
+    #line 14 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumController.lf"
     // Set input by default to an always absent default input.
+    #line 14 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumController.lf"
     self->_lf_theta = &self->_lf_default__theta;
+    #line 15 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumController.lf"
     // Set input by default to an always absent default input.
+    #line 15 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumController.lf"
     self->_lf_d_theta = &self->_lf_default__d_theta;
+    #line 16 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumController.lf"
     // Set input by default to an always absent default input.
+    #line 16 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumController.lf"
     self->_lf_phi = &self->_lf_default__phi;
+    #line 17 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumController.lf"
     // Set input by default to an always absent default input.
+    #line 17 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumController.lf"
     self->_lf_d_phi = &self->_lf_default__d_phi;
+    #line 35 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumController.lf"
     self->_lf__reaction_0.number = 0;
+    #line 35 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumController.lf"
     self->_lf__reaction_0.function = pendulumcontrollerreaction_function_0;
+    #line 35 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumController.lf"
     self->_lf__reaction_0.self = self;
+    #line 35 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumController.lf"
     self->_lf__reaction_0.deadline_violation_handler = NULL;
+    #line 35 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumController.lf"
     self->_lf__reaction_0.STP_handler = NULL;
+    #line 35 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumController.lf"
     self->_lf__reaction_0.name = "?";
+    #line 35 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumController.lf"
     self->_lf__reaction_0.mode = NULL;
-    self->_lf__reaction_1.number = 1;
-    self->_lf__reaction_1.function = pendulumcontrollerreaction_function_1;
-    self->_lf__reaction_1.self = self;
-    self->_lf__reaction_1.deadline_violation_handler = NULL;
-    self->_lf__reaction_1.STP_handler = NULL;
-    self->_lf__reaction_1.name = "?";
-    self->_lf__reaction_1.mode = NULL;
-    self->_lf__reaction_2.number = 2;
-    self->_lf__reaction_2.function = pendulumcontrollerreaction_function_2;
-    self->_lf__reaction_2.self = self;
-    self->_lf__reaction_2.deadline_violation_handler = NULL;
-    self->_lf__reaction_2.STP_handler = NULL;
-    self->_lf__reaction_2.name = "?";
-    self->_lf__reaction_2.mode = NULL;
-    self->_lf__startup_reactions[0] = &self->_lf__reaction_0;
-    self->_lf__startup.last = NULL;
-    self->_lf__startup.reactions = &self->_lf__startup_reactions[0];
-    self->_lf__startup.number_of_reactions = 1;
-    self->_lf__startup.is_timer = false;
-    self->_lf__a.last = NULL;
-    self->_lf__a_reactions[0] = &self->_lf__reaction_1;
-    self->_lf__a.reactions = &self->_lf__a_reactions[0];
-    self->_lf__a.number_of_reactions = 1;
-    self->_lf__a.is_physical = false;
-    
-    self->_lf__a.element_size = 0;
-    self->_lf__b.last = NULL;
-    self->_lf__b_reactions[0] = &self->_lf__reaction_2;
-    self->_lf__b.reactions = &self->_lf__b_reactions[0];
-    self->_lf__b.number_of_reactions = 1;
-    self->_lf__b.is_physical = false;
-    
-    self->_lf__b.element_size = 0;
+    #line 14 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumController.lf"
     self->_lf__theta.last = NULL;
+    #line 14 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumController.lf"
+    #line 14 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumController.lf"
     self->_lf__theta_reactions[0] = &self->_lf__reaction_0;
-    self->_lf__theta_reactions[1] = &self->_lf__reaction_1;
-    self->_lf__theta_reactions[2] = &self->_lf__reaction_2;
+    #line 14 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumController.lf"
     self->_lf__theta.reactions = &self->_lf__theta_reactions[0];
-    self->_lf__theta.number_of_reactions = 3;
+    #line 14 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumController.lf"
+    self->_lf__theta.number_of_reactions = 1;
     self->_lf__theta.element_size = sizeof(double);
+    #line 15 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumController.lf"
     self->_lf__d_theta.last = NULL;
+    #line 15 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumController.lf"
+    #line 15 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumController.lf"
     self->_lf__d_theta_reactions[0] = &self->_lf__reaction_0;
-    self->_lf__d_theta_reactions[1] = &self->_lf__reaction_1;
-    self->_lf__d_theta_reactions[2] = &self->_lf__reaction_2;
+    #line 15 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumController.lf"
     self->_lf__d_theta.reactions = &self->_lf__d_theta_reactions[0];
-    self->_lf__d_theta.number_of_reactions = 3;
+    #line 15 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumController.lf"
+    self->_lf__d_theta.number_of_reactions = 1;
     self->_lf__d_theta.element_size = sizeof(double);
+    #line 16 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumController.lf"
     self->_lf__phi.last = NULL;
-    self->_lf__phi_reactions[0] = &self->_lf__reaction_1;
-    self->_lf__phi_reactions[1] = &self->_lf__reaction_2;
+    #line 16 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumController.lf"
+    #line 16 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumController.lf"
+    self->_lf__phi_reactions[0] = &self->_lf__reaction_0;
+    #line 16 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumController.lf"
     self->_lf__phi.reactions = &self->_lf__phi_reactions[0];
-    self->_lf__phi.number_of_reactions = 2;
+    #line 16 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumController.lf"
+    self->_lf__phi.number_of_reactions = 1;
     self->_lf__phi.element_size = sizeof(double);
+    #line 17 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumController.lf"
     self->_lf__d_phi.last = NULL;
-    self->_lf__d_phi_reactions[0] = &self->_lf__reaction_1;
-    self->_lf__d_phi_reactions[1] = &self->_lf__reaction_2;
+    #line 17 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumController.lf"
+    #line 17 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumController.lf"
+    self->_lf__d_phi_reactions[0] = &self->_lf__reaction_0;
+    #line 17 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumController.lf"
     self->_lf__d_phi.reactions = &self->_lf__d_phi_reactions[0];
-    self->_lf__d_phi.number_of_reactions = 2;
+    #line 17 "file:/home/plutonh/project/src/2023_03_24/FurutaPendulum/PendulumController.lf"
+    self->_lf__d_phi.number_of_reactions = 1;
     self->_lf__d_phi.element_size = sizeof(double);
     return self;
 }
 // =============== END reactor class PendulumController
-// =============== START reactor class Print
-// *********** From the preamble, verbatim:
-#include <math.h>
-#define PI 3.14159265
-// Really checks sign. True is 1, False is 0.
-double sign_1(double x) {
-        return (x > 0.0) - (x < 0.0); 
-}
-double restrictAngle(double theta) {
-        return((fmod(fabs(theta) + PI, 2 * PI) - PI) * sign_1(theta));
-}
-// *********** End of preamble.
-typedef struct {
-    double value;
-    bool is_present;
-    int num_destinations;
-    lf_token_t* token;
-    int length;
-    void (*destructor) (void* value);
-    void* (*copy_constructor) (void* value);
-} print_control_t;
-typedef struct {
-    double value;
-    bool is_present;
-    int num_destinations;
-    lf_token_t* token;
-    int length;
-    void (*destructor) (void* value);
-    void* (*copy_constructor) (void* value);
-} print_theta_t;
-typedef struct {
-    double value;
-    bool is_present;
-    int num_destinations;
-    lf_token_t* token;
-    int length;
-    void (*destructor) (void* value);
-    void* (*copy_constructor) (void* value);
-} print_phi_t;
-typedef struct {
-    struct self_base_t base;
-    string filename;
-    FILE* file;
-    print_control_t* _lf_control;
-    // width of -2 indicates that it is not a multiport.
-    int _lf_control_width;
-    // Default input (in case it does not get connected)
-    print_control_t _lf_default__control;
-    print_theta_t* _lf_theta;
-    // width of -2 indicates that it is not a multiport.
-    int _lf_theta_width;
-    // Default input (in case it does not get connected)
-    print_theta_t _lf_default__theta;
-    print_phi_t* _lf_phi;
-    // width of -2 indicates that it is not a multiport.
-    int _lf_phi_width;
-    // Default input (in case it does not get connected)
-    print_phi_t _lf_default__phi;
-    reaction_t _lf__reaction_0;
-    reaction_t _lf__reaction_1;
-    reaction_t _lf__reaction_2;
-    trigger_t _lf__startup;
-    reaction_t* _lf__startup_reactions[1];
-    trigger_t _lf__shutdown;
-    reaction_t* _lf__shutdown_reactions[1];
-    trigger_t _lf__control;
-    reaction_t* _lf__control_reactions[1];
-    trigger_t _lf__theta;
-    reaction_t* _lf__theta_reactions[1];
-    trigger_t _lf__phi;
-    reaction_t* _lf__phi_reactions[1];
-} print_self_t;
-// ***** Start of method declarations.
-// ***** End of method declarations.
-#include "include/ctarget/set.h"
-void printreaction_function_0(void* instance_args) {
-    #pragma GCC diagnostic push
-    #pragma GCC diagnostic ignored "-Wunused-variable"
-    print_self_t* self = (print_self_t*)instance_args;
-    #pragma GCC diagnostic pop
-    self->file = fopen(self->filename, "w");
-    if(self->file == NULL) {
-        lf_print_error_and_exit("Failed to open file: %s", self->filename);
-    } else {
-        fprintf(self->file, "Time,Control,Theta,Phi\n");
-    }
-        
-}
-#include "include/ctarget/set_undef.h"
-#include "include/ctarget/set.h"
-void printreaction_function_1(void* instance_args) {
-    #pragma GCC diagnostic push
-    #pragma GCC diagnostic ignored "-Wunused-variable"
-    print_self_t* self = (print_self_t*)instance_args;
-    print_control_t* control = self->_lf_control;
-    int control_width = self->_lf_control_width;
-    print_theta_t* theta = self->_lf_theta;
-    int theta_width = self->_lf_theta_width;
-    print_phi_t* phi = self->_lf_phi;
-    int phi_width = self->_lf_phi_width;
-    #pragma GCC diagnostic pop
-    double t = lf_time_logical_elapsed() / 1.0e9;
-    fprintf(self->file,
-        "%f,%f,%f,%f\n",
-        t,
-        control->value,
-        restrictAngle(theta->value),
-        restrictAngle(phi->value)
-    );
-        
-}
-#include "include/ctarget/set_undef.h"
-#include "include/ctarget/set.h"
-void printreaction_function_2(void* instance_args) {
-    #pragma GCC diagnostic push
-    #pragma GCC diagnostic ignored "-Wunused-variable"
-    print_self_t* self = (print_self_t*)instance_args;
-    #pragma GCC diagnostic pop
-    fclose(self->file);
-        
-}
-#include "include/ctarget/set_undef.h"
-print_self_t* new_Print() {
-    print_self_t* self = (print_self_t*)_lf_new_reactor(sizeof(print_self_t));
-    // Set input by default to an always absent default input.
-    self->_lf_control = &self->_lf_default__control;
-    // Set input by default to an always absent default input.
-    self->_lf_theta = &self->_lf_default__theta;
-    // Set input by default to an always absent default input.
-    self->_lf_phi = &self->_lf_default__phi;
-    self->_lf__reaction_0.number = 0;
-    self->_lf__reaction_0.function = printreaction_function_0;
-    self->_lf__reaction_0.self = self;
-    self->_lf__reaction_0.deadline_violation_handler = NULL;
-    self->_lf__reaction_0.STP_handler = NULL;
-    self->_lf__reaction_0.name = "?";
-    self->_lf__reaction_0.mode = NULL;
-    self->_lf__reaction_1.number = 1;
-    self->_lf__reaction_1.function = printreaction_function_1;
-    self->_lf__reaction_1.self = self;
-    self->_lf__reaction_1.deadline_violation_handler = NULL;
-    self->_lf__reaction_1.STP_handler = NULL;
-    self->_lf__reaction_1.name = "?";
-    self->_lf__reaction_1.mode = NULL;
-    self->_lf__reaction_2.number = 2;
-    self->_lf__reaction_2.function = printreaction_function_2;
-    self->_lf__reaction_2.self = self;
-    self->_lf__reaction_2.deadline_violation_handler = NULL;
-    self->_lf__reaction_2.STP_handler = NULL;
-    self->_lf__reaction_2.name = "?";
-    self->_lf__reaction_2.mode = NULL;
-    self->_lf__startup_reactions[0] = &self->_lf__reaction_0;
-    self->_lf__startup.last = NULL;
-    self->_lf__startup.reactions = &self->_lf__startup_reactions[0];
-    self->_lf__startup.number_of_reactions = 1;
-    self->_lf__startup.is_timer = false;
-    self->_lf__shutdown_reactions[0] = &self->_lf__reaction_2;
-    self->_lf__shutdown.last = NULL;
-    self->_lf__shutdown.reactions = &self->_lf__shutdown_reactions[0];
-    self->_lf__shutdown.number_of_reactions = 1;
-    self->_lf__shutdown.is_timer = false;
-    self->_lf__control.last = NULL;
-    self->_lf__control_reactions[0] = &self->_lf__reaction_1;
-    self->_lf__control.reactions = &self->_lf__control_reactions[0];
-    self->_lf__control.number_of_reactions = 1;
-    self->_lf__control.element_size = sizeof(double);
-    self->_lf__theta.last = NULL;
-    self->_lf__theta_reactions[0] = &self->_lf__reaction_1;
-    self->_lf__theta.reactions = &self->_lf__theta_reactions[0];
-    self->_lf__theta.number_of_reactions = 1;
-    self->_lf__theta.element_size = sizeof(double);
-    self->_lf__phi.last = NULL;
-    self->_lf__phi_reactions[0] = &self->_lf__reaction_1;
-    self->_lf__phi.reactions = &self->_lf__phi_reactions[0];
-    self->_lf__phi.number_of_reactions = 1;
-    self->_lf__phi.element_size = sizeof(double);
-    return self;
-}
-// =============== END reactor class Print
 // =============== START reactor class MainPendulum
 typedef struct {
     struct self_base_t base;
@@ -777,8 +901,8 @@ mainpendulum_self_t* new_MainPendulum() {
 trigger_t* _lf_timer_triggers[1];
 int _lf_timer_triggers_size = 1;
 // Array of pointers to startup triggers.
-reaction_t* _lf_startup_reactions[2];
-int _lf_startup_reactions_size = 2;
+reaction_t* _lf_startup_reactions[1];
+int _lf_startup_reactions_size = 1;
 // Array of pointers to shutdown triggers.
 reaction_t* _lf_shutdown_reactions[1];
 int _lf_shutdown_reactions_size = 1;
@@ -791,14 +915,11 @@ trigger_t* _lf_action_for_port(int port_id) {
 void _lf_initialize_trigger_objects() {
     // Initialize the _lf_clock
     lf_initialize_clock();
-    _lf_tokens_with_ref_count_size = 2;
-    _lf_tokens_with_ref_count = (token_present_t*)calloc(2, sizeof(token_present_t));
-    if (_lf_tokens_with_ref_count == NULL) lf_print_error_and_exit("Out of memory!");
     // Create the array that will contain pointers to is_present fields to reset on each step.
-    _lf_is_present_fields_size = 7;
-    _lf_is_present_fields = (bool**)calloc(7, sizeof(bool*));
+    _lf_is_present_fields_size = 5;
+    _lf_is_present_fields = (bool**)calloc(5, sizeof(bool*));
     if (_lf_is_present_fields == NULL) lf_print_error_and_exit("Out of memory!");
-    _lf_is_present_fields_abbreviated = (bool**)calloc(7, sizeof(bool*));
+    _lf_is_present_fields_abbreviated = (bool**)calloc(5, sizeof(bool*));
     if (_lf_is_present_fields_abbreviated == NULL) lf_print_error_and_exit("Out of memory!");
     _lf_is_present_fields_abbreviated_size = 0;
     int _lf_startup_reactions_count = 0;
@@ -808,8 +929,8 @@ void _lf_initialize_trigger_objects() {
     int _lf_tokens_with_ref_count_count = 0;
     mainpendulum_self_t* mainpendulum_self[1];
     pendulumsimulation_self_t* mainpendulum_p1_self[1];
-    pendulumcontroller_self_t* mainpendulum_p2_self[1];
-    print_self_t* mainpendulum_p3_self[1];
+    print_self_t* mainpendulum_p2_self[1];
+    pendulumcontroller_self_t* mainpendulum_p3_self[1];
     // ***** Start initializing MainPendulum of class MainPendulum
     mainpendulum_self[0] = new_MainPendulum();
     int bank_index = 0;
@@ -859,99 +980,78 @@ void _lf_initialize_trigger_objects() {
         //***** End initializing MainPendulum.P1
     }
     {
-        // ***** Start initializing MainPendulum.P2 of class PendulumController
-        mainpendulum_p2_self[0] = new_PendulumController();
+        // ***** Start initializing MainPendulum.P2 of class Print
+        mainpendulum_p2_self[0] = new_Print();
         int bank_index = 0;
+        mainpendulum_p2_self[0]->filename = "/home/plutonh/project/src/2023_03_24/FurutaPendulum/pendulum.csv";
         // width of -2 indicates that it is not a multiport.
-        mainpendulum_p2_self[0]->_lf_u_width = -2;
+        mainpendulum_p2_self[0]->_lf_control_width = -2;
         // width of -2 indicates that it is not a multiport.
         mainpendulum_p2_self[0]->_lf_theta_width = -2;
         // width of -2 indicates that it is not a multiport.
-        mainpendulum_p2_self[0]->_lf_d_theta_width = -2;
-        // width of -2 indicates that it is not a multiport.
         mainpendulum_p2_self[0]->_lf_phi_width = -2;
-        // width of -2 indicates that it is not a multiport.
-        mainpendulum_p2_self[0]->_lf_d_phi_width = -2;
         _lf_startup_reactions[_lf_startup_reactions_count++] = &mainpendulum_p2_self[0]->_lf__reaction_0;
+        _lf_shutdown_reactions[_lf_shutdown_reactions_count++] = &mainpendulum_p2_self[0]->_lf__reaction_2;
         { // For scoping
-            static double _initial = -1.04945717118225;
-            mainpendulum_p2_self[0]->ci1 = _initial;
+            static FILE* _initial = NULL;
+            mainpendulum_p2_self[0]->file = _initial;
         } // End scoping.
-        { // For scoping
-            static double _initial = -0.20432286791216;
-            mainpendulum_p2_self[0]->ci2 = _initial;
-        } // End scoping.
-        { // For scoping
-            static double _initial = -0.00735846749875;
-            mainpendulum_p2_self[0]->ci3 = _initial;
-        } // End scoping.
-        { // For scoping
-            static double _initial = -0.00735846749875;
-            mainpendulum_p2_self[0]->ci4 = _initial;
-        } // End scoping.
-        { // For scoping
-            static double _initial = -1.70871686211144;
-            mainpendulum_p2_self[0]->si1 = _initial;
-        } // End scoping.
-        { // For scoping
-            static double _initial = -0.30395427746831;
-            mainpendulum_p2_self[0]->si2 = _initial;
-        } // End scoping.
-        { // For scoping
-            static double _initial = -0.03254225945714;
-            mainpendulum_p2_self[0]->si3 = _initial;
-        } // End scoping.
-        { // For scoping
-            static double _initial = -0.05808270221773;
-            mainpendulum_p2_self[0]->si4 = _initial;
-        } // End scoping.
-        { // For scoping
-            static double _initial = -7.0124562;
-            mainpendulum_p2_self[0]->ph2 = _initial;
-        } // End scoping.
-        // Initializing action MainPendulum.P2.a
-        mainpendulum_p2_self[0]->_lf__a.offset = 0;
-        mainpendulum_p2_self[0]->_lf__a.period = -1;
-        mainpendulum_p2_self[0]->_lf__a.mode = NULL;
-        // Initializing action MainPendulum.P2.b
-        mainpendulum_p2_self[0]->_lf__b.offset = 0;
-        mainpendulum_p2_self[0]->_lf__b.period = -1;
-        mainpendulum_p2_self[0]->_lf__b.mode = NULL;
-        mainpendulum_p2_self[0]->_lf__a.token = _lf_create_token(0);
-        mainpendulum_p2_self[0]->_lf__a.status = absent;
-        _lf_tokens_with_ref_count[_lf_tokens_with_ref_count_count].token = &mainpendulum_p2_self[0]->_lf__a.token;
-        _lf_tokens_with_ref_count[_lf_tokens_with_ref_count_count].status = &mainpendulum_p2_self[0]->_lf__a.status;
-        _lf_tokens_with_ref_count[_lf_tokens_with_ref_count_count++].reset_is_present = true;
-        mainpendulum_p2_self[0]->_lf__b.token = _lf_create_token(0);
-        mainpendulum_p2_self[0]->_lf__b.status = absent;
-        _lf_tokens_with_ref_count[_lf_tokens_with_ref_count_count].token = &mainpendulum_p2_self[0]->_lf__b.token;
-        _lf_tokens_with_ref_count[_lf_tokens_with_ref_count_count].status = &mainpendulum_p2_self[0]->_lf__b.status;
-        _lf_tokens_with_ref_count[_lf_tokens_with_ref_count_count++].reset_is_present = true;
         mainpendulum_p2_self[0]->_lf__reaction_0.deadline = NEVER;
         mainpendulum_p2_self[0]->_lf__reaction_1.deadline = NEVER;
         mainpendulum_p2_self[0]->_lf__reaction_2.deadline = NEVER;
         //***** End initializing MainPendulum.P2
     }
     {
-        // ***** Start initializing MainPendulum.P3 of class Print
-        mainpendulum_p3_self[0] = new_Print();
+        // ***** Start initializing MainPendulum.P3 of class PendulumController
+        mainpendulum_p3_self[0] = new_PendulumController();
         int bank_index = 0;
-        mainpendulum_p3_self[0]->filename = "FurutaPendulum/pendulum.csv";
         // width of -2 indicates that it is not a multiport.
-        mainpendulum_p3_self[0]->_lf_control_width = -2;
+        mainpendulum_p3_self[0]->_lf_u_width = -2;
         // width of -2 indicates that it is not a multiport.
         mainpendulum_p3_self[0]->_lf_theta_width = -2;
         // width of -2 indicates that it is not a multiport.
+        mainpendulum_p3_self[0]->_lf_d_theta_width = -2;
+        // width of -2 indicates that it is not a multiport.
         mainpendulum_p3_self[0]->_lf_phi_width = -2;
-        _lf_startup_reactions[_lf_startup_reactions_count++] = &mainpendulum_p3_self[0]->_lf__reaction_0;
-        _lf_shutdown_reactions[_lf_shutdown_reactions_count++] = &mainpendulum_p3_self[0]->_lf__reaction_2;
+        // width of -2 indicates that it is not a multiport.
+        mainpendulum_p3_self[0]->_lf_d_phi_width = -2;
         { // For scoping
-            static FILE* _initial = NULL;
-            mainpendulum_p3_self[0]->file = _initial;
+            static double _initial = -1.04945717118225;
+            mainpendulum_p3_self[0]->ci1 = _initial;
+        } // End scoping.
+        { // For scoping
+            static double _initial = -0.20432286791216;
+            mainpendulum_p3_self[0]->ci2 = _initial;
+        } // End scoping.
+        { // For scoping
+            static double _initial = -0.00735846749875;
+            mainpendulum_p3_self[0]->ci3 = _initial;
+        } // End scoping.
+        { // For scoping
+            static double _initial = -0.00735846749875;
+            mainpendulum_p3_self[0]->ci4 = _initial;
+        } // End scoping.
+        { // For scoping
+            static double _initial = -1.70871686211144;
+            mainpendulum_p3_self[0]->si1 = _initial;
+        } // End scoping.
+        { // For scoping
+            static double _initial = -0.30395427746831;
+            mainpendulum_p3_self[0]->si2 = _initial;
+        } // End scoping.
+        { // For scoping
+            static double _initial = -0.03254225945714;
+            mainpendulum_p3_self[0]->si3 = _initial;
+        } // End scoping.
+        { // For scoping
+            static double _initial = -0.05808270221773;
+            mainpendulum_p3_self[0]->si4 = _initial;
+        } // End scoping.
+        { // For scoping
+            static double _initial = -7.0124562;
+            mainpendulum_p3_self[0]->ph2 = _initial;
         } // End scoping.
         mainpendulum_p3_self[0]->_lf__reaction_0.deadline = NEVER;
-        mainpendulum_p3_self[0]->_lf__reaction_1.deadline = NEVER;
-        mainpendulum_p3_self[0]->_lf__reaction_2.deadline = NEVER;
         //***** End initializing MainPendulum.P3
     }
     //***** End initializing MainPendulum
@@ -1012,67 +1112,25 @@ void _lf_initialize_trigger_objects() {
         {
             // Total number of outputs (single ports and multiport channels)
             // produced by reaction_0 of MainPendulum.P2.
-            mainpendulum_p2_self[0]->_lf__reaction_0.num_outputs = 1;
-            // Allocate memory for triggers[] and triggered_sizes[] on the reaction_t
-            // struct for this reaction.
-            mainpendulum_p2_self[0]->_lf__reaction_0.triggers = (trigger_t***)_lf_allocate(
-                    1, sizeof(trigger_t**),
-                    &mainpendulum_p2_self[0]->base.allocations);
-            mainpendulum_p2_self[0]->_lf__reaction_0.triggered_sizes = (int*)_lf_allocate(
-                    1, sizeof(int),
-                    &mainpendulum_p2_self[0]->base.allocations);
-            mainpendulum_p2_self[0]->_lf__reaction_0.output_produced = (bool**)_lf_allocate(
-                    1, sizeof(bool*),
-                    &mainpendulum_p2_self[0]->base.allocations);
+            mainpendulum_p2_self[0]->_lf__reaction_0.num_outputs = 0;
             {
                 int count = 0;
-                {
-                    mainpendulum_p2_self[0]->_lf__reaction_0.output_produced[count++] = &mainpendulum_p2_self[0]->_lf_u.is_present;
-                }
             }
             
             // ** End initialization for reaction 0 of MainPendulum.P2
             // Total number of outputs (single ports and multiport channels)
             // produced by reaction_1 of MainPendulum.P2.
-            mainpendulum_p2_self[0]->_lf__reaction_1.num_outputs = 1;
-            // Allocate memory for triggers[] and triggered_sizes[] on the reaction_t
-            // struct for this reaction.
-            mainpendulum_p2_self[0]->_lf__reaction_1.triggers = (trigger_t***)_lf_allocate(
-                    1, sizeof(trigger_t**),
-                    &mainpendulum_p2_self[0]->base.allocations);
-            mainpendulum_p2_self[0]->_lf__reaction_1.triggered_sizes = (int*)_lf_allocate(
-                    1, sizeof(int),
-                    &mainpendulum_p2_self[0]->base.allocations);
-            mainpendulum_p2_self[0]->_lf__reaction_1.output_produced = (bool**)_lf_allocate(
-                    1, sizeof(bool*),
-                    &mainpendulum_p2_self[0]->base.allocations);
+            mainpendulum_p2_self[0]->_lf__reaction_1.num_outputs = 0;
             {
                 int count = 0;
-                {
-                    mainpendulum_p2_self[0]->_lf__reaction_1.output_produced[count++] = &mainpendulum_p2_self[0]->_lf_u.is_present;
-                }
             }
             
             // ** End initialization for reaction 1 of MainPendulum.P2
             // Total number of outputs (single ports and multiport channels)
             // produced by reaction_2 of MainPendulum.P2.
-            mainpendulum_p2_self[0]->_lf__reaction_2.num_outputs = 1;
-            // Allocate memory for triggers[] and triggered_sizes[] on the reaction_t
-            // struct for this reaction.
-            mainpendulum_p2_self[0]->_lf__reaction_2.triggers = (trigger_t***)_lf_allocate(
-                    1, sizeof(trigger_t**),
-                    &mainpendulum_p2_self[0]->base.allocations);
-            mainpendulum_p2_self[0]->_lf__reaction_2.triggered_sizes = (int*)_lf_allocate(
-                    1, sizeof(int),
-                    &mainpendulum_p2_self[0]->base.allocations);
-            mainpendulum_p2_self[0]->_lf__reaction_2.output_produced = (bool**)_lf_allocate(
-                    1, sizeof(bool*),
-                    &mainpendulum_p2_self[0]->base.allocations);
+            mainpendulum_p2_self[0]->_lf__reaction_2.num_outputs = 0;
             {
                 int count = 0;
-                {
-                    mainpendulum_p2_self[0]->_lf__reaction_2.output_produced[count++] = &mainpendulum_p2_self[0]->_lf_u.is_present;
-                }
             }
             
             // ** End initialization for reaction 2 of MainPendulum.P2
@@ -1082,28 +1140,26 @@ void _lf_initialize_trigger_objects() {
         {
             // Total number of outputs (single ports and multiport channels)
             // produced by reaction_0 of MainPendulum.P3.
-            mainpendulum_p3_self[0]->_lf__reaction_0.num_outputs = 0;
+            mainpendulum_p3_self[0]->_lf__reaction_0.num_outputs = 1;
+            // Allocate memory for triggers[] and triggered_sizes[] on the reaction_t
+            // struct for this reaction.
+            mainpendulum_p3_self[0]->_lf__reaction_0.triggers = (trigger_t***)_lf_allocate(
+                    1, sizeof(trigger_t**),
+                    &mainpendulum_p3_self[0]->base.allocations);
+            mainpendulum_p3_self[0]->_lf__reaction_0.triggered_sizes = (int*)_lf_allocate(
+                    1, sizeof(int),
+                    &mainpendulum_p3_self[0]->base.allocations);
+            mainpendulum_p3_self[0]->_lf__reaction_0.output_produced = (bool**)_lf_allocate(
+                    1, sizeof(bool*),
+                    &mainpendulum_p3_self[0]->base.allocations);
             {
                 int count = 0;
+                {
+                    mainpendulum_p3_self[0]->_lf__reaction_0.output_produced[count++] = &mainpendulum_p3_self[0]->_lf_u.is_present;
+                }
             }
             
             // ** End initialization for reaction 0 of MainPendulum.P3
-            // Total number of outputs (single ports and multiport channels)
-            // produced by reaction_1 of MainPendulum.P3.
-            mainpendulum_p3_self[0]->_lf__reaction_1.num_outputs = 0;
-            {
-                int count = 0;
-            }
-            
-            // ** End initialization for reaction 1 of MainPendulum.P3
-            // Total number of outputs (single ports and multiport channels)
-            // produced by reaction_2 of MainPendulum.P3.
-            mainpendulum_p3_self[0]->_lf__reaction_2.num_outputs = 0;
-            {
-                int count = 0;
-            }
-            
-            // ** End initialization for reaction 2 of MainPendulum.P3
         }
         // **** End of deferred initialize for MainPendulum.P3
     }
@@ -1120,7 +1176,7 @@ void _lf_initialize_trigger_objects() {
         mainpendulum_p1_self[src_runtime]->_lf_theta.num_destinations = 2;
     }
     // For reference counting, set num_destinations for port MainPendulum.P1.d_theta.
-    // Iterate over range MainPendulum.P1.d_theta(0,1)->[MainPendulum.P2.d_theta(0,1)].
+    // Iterate over range MainPendulum.P1.d_theta(0,1)->[MainPendulum.P3.d_theta(0,1)].
     {
         int src_runtime = 0; // Runtime index.
         int src_channel = 0; // Channel index.
@@ -1138,7 +1194,7 @@ void _lf_initialize_trigger_objects() {
         mainpendulum_p1_self[src_runtime]->_lf_phi.num_destinations = 2;
     }
     // For reference counting, set num_destinations for port MainPendulum.P1.d_phi.
-    // Iterate over range MainPendulum.P1.d_phi(0,1)->[MainPendulum.P2.d_phi(0,1)].
+    // Iterate over range MainPendulum.P1.d_phi(0,1)->[MainPendulum.P3.d_phi(0,1)].
     {
         int src_runtime = 0; // Runtime index.
         int src_channel = 0; // Channel index.
@@ -1164,7 +1220,7 @@ void _lf_initialize_trigger_objects() {
                     &mainpendulum_p1_self[src_runtime]->base.allocations); 
             mainpendulum_p1_self[src_runtime]->_lf__reaction_0.triggers[triggers_index[src_runtime]++] = trigger_array;
         }
-        // Iterate over range MainPendulum.P1.d_theta(0,1)->[MainPendulum.P2.d_theta(0,1)].
+        // Iterate over range MainPendulum.P1.d_theta(0,1)->[MainPendulum.P3.d_theta(0,1)].
         {
             int src_runtime = 0; // Runtime index.
             int src_channel = 0; // Channel index.
@@ -1196,7 +1252,7 @@ void _lf_initialize_trigger_objects() {
                     &mainpendulum_p1_self[src_runtime]->base.allocations); 
             mainpendulum_p1_self[src_runtime]->_lf__reaction_0.triggers[triggers_index[src_runtime]++] = trigger_array;
         }
-        // Iterate over range MainPendulum.P1.d_phi(0,1)->[MainPendulum.P2.d_phi(0,1)].
+        // Iterate over range MainPendulum.P1.d_phi(0,1)->[MainPendulum.P3.d_phi(0,1)].
         {
             int src_runtime = 0; // Runtime index.
             int src_channel = 0; // Channel index.
@@ -1244,19 +1300,19 @@ void _lf_initialize_trigger_objects() {
             }
         }
         for (int i = 0; i < 1; i++) triggers_index[i] = 1;
-        // Iterate over ranges MainPendulum.P1.d_theta(0,1)->[MainPendulum.P2.d_theta(0,1)] and MainPendulum.P2.d_theta(0,1).
+        // Iterate over ranges MainPendulum.P1.d_theta(0,1)->[MainPendulum.P3.d_theta(0,1)] and MainPendulum.P3.d_theta(0,1).
         {
             int src_runtime = 0; // Runtime index.
             int src_channel = 0; // Channel index.
             int src_bank = 0; // Bank index.
-            // Iterate over range MainPendulum.P2.d_theta(0,1).
+            // Iterate over range MainPendulum.P3.d_theta(0,1).
             {
                 int dst_runtime = 0; // Runtime index.
                 int dst_channel = 0; // Channel index.
                 int dst_bank = 0; // Bank index.
                 int range_count = 0;
-                // Point to destination port MainPendulum.P2.d_theta's trigger struct.
-                mainpendulum_p1_self[src_runtime]->_lf__reaction_0.triggers[triggers_index[src_runtime] + src_channel][0] = &mainpendulum_p2_self[dst_runtime]->_lf__d_theta;
+                // Point to destination port MainPendulum.P3.d_theta's trigger struct.
+                mainpendulum_p1_self[src_runtime]->_lf__reaction_0.triggers[triggers_index[src_runtime] + src_channel][0] = &mainpendulum_p3_self[dst_runtime]->_lf__d_theta;
             }
         }
         for (int i = 0; i < 1; i++) triggers_index[i] = 2;
@@ -1291,53 +1347,70 @@ void _lf_initialize_trigger_objects() {
             }
         }
         for (int i = 0; i < 1; i++) triggers_index[i] = 3;
-        // Iterate over ranges MainPendulum.P1.d_phi(0,1)->[MainPendulum.P2.d_phi(0,1)] and MainPendulum.P2.d_phi(0,1).
+        // Iterate over ranges MainPendulum.P1.d_phi(0,1)->[MainPendulum.P3.d_phi(0,1)] and MainPendulum.P3.d_phi(0,1).
         {
             int src_runtime = 0; // Runtime index.
             int src_channel = 0; // Channel index.
             int src_bank = 0; // Bank index.
-            // Iterate over range MainPendulum.P2.d_phi(0,1).
+            // Iterate over range MainPendulum.P3.d_phi(0,1).
             {
                 int dst_runtime = 0; // Runtime index.
                 int dst_channel = 0; // Channel index.
                 int dst_bank = 0; // Bank index.
                 int range_count = 0;
-                // Point to destination port MainPendulum.P2.d_phi's trigger struct.
-                mainpendulum_p1_self[src_runtime]->_lf__reaction_0.triggers[triggers_index[src_runtime] + src_channel][0] = &mainpendulum_p2_self[dst_runtime]->_lf__d_phi;
+                // Point to destination port MainPendulum.P3.d_phi's trigger struct.
+                mainpendulum_p1_self[src_runtime]->_lf__reaction_0.triggers[triggers_index[src_runtime] + src_channel][0] = &mainpendulum_p3_self[dst_runtime]->_lf__d_phi;
             }
         }
     }
     // **** End of non-nested deferred initialize for MainPendulum.P1
     // **** Start non-nested deferred initialize for MainPendulum.P2
-    // For reference counting, set num_destinations for port MainPendulum.P2.u.
-    // Iterate over range MainPendulum.P2.u(0,1)->[MainPendulum.P1.u(0,1), MainPendulum.P3.control(0,1)].
+    // **** End of non-nested deferred initialize for MainPendulum.P2
+    // **** Start non-nested deferred initialize for MainPendulum.P3
+    // For reference counting, set num_destinations for port MainPendulum.P3.u.
+    // Iterate over range MainPendulum.P3.u(0,1)->[MainPendulum.P2.control(0,1), MainPendulum.P1.u(0,1)].
     {
         int src_runtime = 0; // Runtime index.
         int src_channel = 0; // Channel index.
         int src_bank = 0; // Bank index.
         int range_count = 0;
-        mainpendulum_p2_self[src_runtime]->_lf_u.num_destinations = 2;
+        mainpendulum_p3_self[src_runtime]->_lf_u.num_destinations = 2;
     }
     {
         int triggers_index[1] = { 0 }; // Number of bank members with the reaction.
-        // Iterate over range MainPendulum.P2.u(0,1)->[MainPendulum.P1.u(0,1), MainPendulum.P3.control(0,1)].
+        // Iterate over range MainPendulum.P3.u(0,1)->[MainPendulum.P2.control(0,1), MainPendulum.P1.u(0,1)].
         {
             int src_runtime = 0; // Runtime index.
             int src_channel = 0; // Channel index.
             int src_bank = 0; // Bank index.
             int range_count = 0;
-            // Reaction 0 of MainPendulum.P2 triggers 2 downstream reactions
-            // through port MainPendulum.P2.u.
-            mainpendulum_p2_self[src_runtime]->_lf__reaction_0.triggered_sizes[triggers_index[src_runtime]] = 2;
-            // For reaction 0 of MainPendulum.P2, allocate an
-            // array of trigger pointers for downstream reactions through port MainPendulum.P2.u
+            // Reaction 0 of MainPendulum.P3 triggers 2 downstream reactions
+            // through port MainPendulum.P3.u.
+            mainpendulum_p3_self[src_runtime]->_lf__reaction_0.triggered_sizes[triggers_index[src_runtime]] = 2;
+            // For reaction 0 of MainPendulum.P3, allocate an
+            // array of trigger pointers for downstream reactions through port MainPendulum.P3.u
             trigger_t** trigger_array = (trigger_t**)_lf_allocate(
                     2, sizeof(trigger_t*),
-                    &mainpendulum_p2_self[src_runtime]->base.allocations); 
-            mainpendulum_p2_self[src_runtime]->_lf__reaction_0.triggers[triggers_index[src_runtime]++] = trigger_array;
+                    &mainpendulum_p3_self[src_runtime]->base.allocations); 
+            mainpendulum_p3_self[src_runtime]->_lf__reaction_0.triggers[triggers_index[src_runtime]++] = trigger_array;
         }
         for (int i = 0; i < 1; i++) triggers_index[i] = 0;
-        // Iterate over ranges MainPendulum.P2.u(0,1)->[MainPendulum.P1.u(0,1), MainPendulum.P3.control(0,1)] and MainPendulum.P1.u(0,1).
+        // Iterate over ranges MainPendulum.P3.u(0,1)->[MainPendulum.P2.control(0,1), MainPendulum.P1.u(0,1)] and MainPendulum.P2.control(0,1).
+        {
+            int src_runtime = 0; // Runtime index.
+            int src_channel = 0; // Channel index.
+            int src_bank = 0; // Bank index.
+            // Iterate over range MainPendulum.P2.control(0,1).
+            {
+                int dst_runtime = 0; // Runtime index.
+                int dst_channel = 0; // Channel index.
+                int dst_bank = 0; // Bank index.
+                int range_count = 0;
+                // Point to destination port MainPendulum.P2.control's trigger struct.
+                mainpendulum_p3_self[src_runtime]->_lf__reaction_0.triggers[triggers_index[src_runtime] + src_channel][0] = &mainpendulum_p2_self[dst_runtime]->_lf__control;
+            }
+        }
+        // Iterate over ranges MainPendulum.P3.u(0,1)->[MainPendulum.P2.control(0,1), MainPendulum.P1.u(0,1)] and MainPendulum.P1.u(0,1).
         {
             int src_runtime = 0; // Runtime index.
             int src_channel = 0; // Channel index.
@@ -1349,127 +1422,10 @@ void _lf_initialize_trigger_objects() {
                 int dst_bank = 0; // Bank index.
                 int range_count = 0;
                 // Point to destination port MainPendulum.P1.u's trigger struct.
-                mainpendulum_p2_self[src_runtime]->_lf__reaction_0.triggers[triggers_index[src_runtime] + src_channel][0] = &mainpendulum_p1_self[dst_runtime]->_lf__u;
-            }
-        }
-        // Iterate over ranges MainPendulum.P2.u(0,1)->[MainPendulum.P1.u(0,1), MainPendulum.P3.control(0,1)] and MainPendulum.P3.control(0,1).
-        {
-            int src_runtime = 0; // Runtime index.
-            int src_channel = 0; // Channel index.
-            int src_bank = 0; // Bank index.
-            // Iterate over range MainPendulum.P3.control(0,1).
-            {
-                int dst_runtime = 0; // Runtime index.
-                int dst_channel = 0; // Channel index.
-                int dst_bank = 0; // Bank index.
-                int range_count = 0;
-                // Point to destination port MainPendulum.P3.control's trigger struct.
-                mainpendulum_p2_self[src_runtime]->_lf__reaction_0.triggers[triggers_index[src_runtime] + src_channel][1] = &mainpendulum_p3_self[dst_runtime]->_lf__control;
+                mainpendulum_p3_self[src_runtime]->_lf__reaction_0.triggers[triggers_index[src_runtime] + src_channel][1] = &mainpendulum_p1_self[dst_runtime]->_lf__u;
             }
         }
     }
-    {
-        int triggers_index[1] = { 0 }; // Number of bank members with the reaction.
-        // Iterate over range MainPendulum.P2.u(0,1)->[MainPendulum.P1.u(0,1), MainPendulum.P3.control(0,1)].
-        {
-            int src_runtime = 0; // Runtime index.
-            int src_channel = 0; // Channel index.
-            int src_bank = 0; // Bank index.
-            int range_count = 0;
-            // Reaction 1 of MainPendulum.P2 triggers 2 downstream reactions
-            // through port MainPendulum.P2.u.
-            mainpendulum_p2_self[src_runtime]->_lf__reaction_1.triggered_sizes[triggers_index[src_runtime]] = 2;
-            // For reaction 1 of MainPendulum.P2, allocate an
-            // array of trigger pointers for downstream reactions through port MainPendulum.P2.u
-            trigger_t** trigger_array = (trigger_t**)_lf_allocate(
-                    2, sizeof(trigger_t*),
-                    &mainpendulum_p2_self[src_runtime]->base.allocations); 
-            mainpendulum_p2_self[src_runtime]->_lf__reaction_1.triggers[triggers_index[src_runtime]++] = trigger_array;
-        }
-        for (int i = 0; i < 1; i++) triggers_index[i] = 0;
-        // Iterate over ranges MainPendulum.P2.u(0,1)->[MainPendulum.P1.u(0,1), MainPendulum.P3.control(0,1)] and MainPendulum.P1.u(0,1).
-        {
-            int src_runtime = 0; // Runtime index.
-            int src_channel = 0; // Channel index.
-            int src_bank = 0; // Bank index.
-            // Iterate over range MainPendulum.P1.u(0,1).
-            {
-                int dst_runtime = 0; // Runtime index.
-                int dst_channel = 0; // Channel index.
-                int dst_bank = 0; // Bank index.
-                int range_count = 0;
-                // Point to destination port MainPendulum.P1.u's trigger struct.
-                mainpendulum_p2_self[src_runtime]->_lf__reaction_1.triggers[triggers_index[src_runtime] + src_channel][0] = &mainpendulum_p1_self[dst_runtime]->_lf__u;
-            }
-        }
-        // Iterate over ranges MainPendulum.P2.u(0,1)->[MainPendulum.P1.u(0,1), MainPendulum.P3.control(0,1)] and MainPendulum.P3.control(0,1).
-        {
-            int src_runtime = 0; // Runtime index.
-            int src_channel = 0; // Channel index.
-            int src_bank = 0; // Bank index.
-            // Iterate over range MainPendulum.P3.control(0,1).
-            {
-                int dst_runtime = 0; // Runtime index.
-                int dst_channel = 0; // Channel index.
-                int dst_bank = 0; // Bank index.
-                int range_count = 0;
-                // Point to destination port MainPendulum.P3.control's trigger struct.
-                mainpendulum_p2_self[src_runtime]->_lf__reaction_1.triggers[triggers_index[src_runtime] + src_channel][1] = &mainpendulum_p3_self[dst_runtime]->_lf__control;
-            }
-        }
-    }
-    {
-        int triggers_index[1] = { 0 }; // Number of bank members with the reaction.
-        // Iterate over range MainPendulum.P2.u(0,1)->[MainPendulum.P1.u(0,1), MainPendulum.P3.control(0,1)].
-        {
-            int src_runtime = 0; // Runtime index.
-            int src_channel = 0; // Channel index.
-            int src_bank = 0; // Bank index.
-            int range_count = 0;
-            // Reaction 2 of MainPendulum.P2 triggers 2 downstream reactions
-            // through port MainPendulum.P2.u.
-            mainpendulum_p2_self[src_runtime]->_lf__reaction_2.triggered_sizes[triggers_index[src_runtime]] = 2;
-            // For reaction 2 of MainPendulum.P2, allocate an
-            // array of trigger pointers for downstream reactions through port MainPendulum.P2.u
-            trigger_t** trigger_array = (trigger_t**)_lf_allocate(
-                    2, sizeof(trigger_t*),
-                    &mainpendulum_p2_self[src_runtime]->base.allocations); 
-            mainpendulum_p2_self[src_runtime]->_lf__reaction_2.triggers[triggers_index[src_runtime]++] = trigger_array;
-        }
-        for (int i = 0; i < 1; i++) triggers_index[i] = 0;
-        // Iterate over ranges MainPendulum.P2.u(0,1)->[MainPendulum.P1.u(0,1), MainPendulum.P3.control(0,1)] and MainPendulum.P1.u(0,1).
-        {
-            int src_runtime = 0; // Runtime index.
-            int src_channel = 0; // Channel index.
-            int src_bank = 0; // Bank index.
-            // Iterate over range MainPendulum.P1.u(0,1).
-            {
-                int dst_runtime = 0; // Runtime index.
-                int dst_channel = 0; // Channel index.
-                int dst_bank = 0; // Bank index.
-                int range_count = 0;
-                // Point to destination port MainPendulum.P1.u's trigger struct.
-                mainpendulum_p2_self[src_runtime]->_lf__reaction_2.triggers[triggers_index[src_runtime] + src_channel][0] = &mainpendulum_p1_self[dst_runtime]->_lf__u;
-            }
-        }
-        // Iterate over ranges MainPendulum.P2.u(0,1)->[MainPendulum.P1.u(0,1), MainPendulum.P3.control(0,1)] and MainPendulum.P3.control(0,1).
-        {
-            int src_runtime = 0; // Runtime index.
-            int src_channel = 0; // Channel index.
-            int src_bank = 0; // Bank index.
-            // Iterate over range MainPendulum.P3.control(0,1).
-            {
-                int dst_runtime = 0; // Runtime index.
-                int dst_channel = 0; // Channel index.
-                int dst_bank = 0; // Bank index.
-                int range_count = 0;
-                // Point to destination port MainPendulum.P3.control's trigger struct.
-                mainpendulum_p2_self[src_runtime]->_lf__reaction_2.triggers[triggers_index[src_runtime] + src_channel][1] = &mainpendulum_p3_self[dst_runtime]->_lf__control;
-            }
-        }
-    }
-    // **** End of non-nested deferred initialize for MainPendulum.P2
-    // **** Start non-nested deferred initialize for MainPendulum.P3
     // **** End of non-nested deferred initialize for MainPendulum.P3
     // **** End of non-nested deferred initialize for MainPendulum
     // Connect inputs and outputs for reactor MainPendulum.
@@ -1486,7 +1442,7 @@ void _lf_initialize_trigger_objects() {
             int dst_channel = 0; // Channel index.
             int dst_bank = 0; // Bank index.
             int range_count = 0;
-            mainpendulum_p2_self[dst_runtime]->_lf_theta = (pendulumcontroller_theta_t*)&mainpendulum_p1_self[src_runtime]->_lf_theta;
+            mainpendulum_p2_self[dst_runtime]->_lf_theta = (print_theta_t*)&mainpendulum_p1_self[src_runtime]->_lf_theta;
         }
     }
     // Connect MainPendulum.P1.theta(0,1)->[MainPendulum.P2.theta(0,1), MainPendulum.P3.theta(0,1)] to port MainPendulum.P3.theta(0,1)
@@ -1501,22 +1457,22 @@ void _lf_initialize_trigger_objects() {
             int dst_channel = 0; // Channel index.
             int dst_bank = 0; // Bank index.
             int range_count = 0;
-            mainpendulum_p3_self[dst_runtime]->_lf_theta = (print_theta_t*)&mainpendulum_p1_self[src_runtime]->_lf_theta;
+            mainpendulum_p3_self[dst_runtime]->_lf_theta = (pendulumcontroller_theta_t*)&mainpendulum_p1_self[src_runtime]->_lf_theta;
         }
     }
-    // Connect MainPendulum.P1.d_theta(0,1)->[MainPendulum.P2.d_theta(0,1)] to port MainPendulum.P2.d_theta(0,1)
-    // Iterate over ranges MainPendulum.P1.d_theta(0,1)->[MainPendulum.P2.d_theta(0,1)] and MainPendulum.P2.d_theta(0,1).
+    // Connect MainPendulum.P1.d_theta(0,1)->[MainPendulum.P3.d_theta(0,1)] to port MainPendulum.P3.d_theta(0,1)
+    // Iterate over ranges MainPendulum.P1.d_theta(0,1)->[MainPendulum.P3.d_theta(0,1)] and MainPendulum.P3.d_theta(0,1).
     {
         int src_runtime = 0; // Runtime index.
         int src_channel = 0; // Channel index.
         int src_bank = 0; // Bank index.
-        // Iterate over range MainPendulum.P2.d_theta(0,1).
+        // Iterate over range MainPendulum.P3.d_theta(0,1).
         {
             int dst_runtime = 0; // Runtime index.
             int dst_channel = 0; // Channel index.
             int dst_bank = 0; // Bank index.
             int range_count = 0;
-            mainpendulum_p2_self[dst_runtime]->_lf_d_theta = (pendulumcontroller_d_theta_t*)&mainpendulum_p1_self[src_runtime]->_lf_d_theta;
+            mainpendulum_p3_self[dst_runtime]->_lf_d_theta = (pendulumcontroller_d_theta_t*)&mainpendulum_p1_self[src_runtime]->_lf_d_theta;
         }
     }
     // Connect MainPendulum.P1.phi(0,1)->[MainPendulum.P2.phi(0,1), MainPendulum.P3.phi(0,1)] to port MainPendulum.P2.phi(0,1)
@@ -1531,7 +1487,7 @@ void _lf_initialize_trigger_objects() {
             int dst_channel = 0; // Channel index.
             int dst_bank = 0; // Bank index.
             int range_count = 0;
-            mainpendulum_p2_self[dst_runtime]->_lf_phi = (pendulumcontroller_phi_t*)&mainpendulum_p1_self[src_runtime]->_lf_phi;
+            mainpendulum_p2_self[dst_runtime]->_lf_phi = (print_phi_t*)&mainpendulum_p1_self[src_runtime]->_lf_phi;
         }
     }
     // Connect MainPendulum.P1.phi(0,1)->[MainPendulum.P2.phi(0,1), MainPendulum.P3.phi(0,1)] to port MainPendulum.P3.phi(0,1)
@@ -1546,27 +1502,43 @@ void _lf_initialize_trigger_objects() {
             int dst_channel = 0; // Channel index.
             int dst_bank = 0; // Bank index.
             int range_count = 0;
-            mainpendulum_p3_self[dst_runtime]->_lf_phi = (print_phi_t*)&mainpendulum_p1_self[src_runtime]->_lf_phi;
+            mainpendulum_p3_self[dst_runtime]->_lf_phi = (pendulumcontroller_phi_t*)&mainpendulum_p1_self[src_runtime]->_lf_phi;
         }
     }
-    // Connect MainPendulum.P1.d_phi(0,1)->[MainPendulum.P2.d_phi(0,1)] to port MainPendulum.P2.d_phi(0,1)
-    // Iterate over ranges MainPendulum.P1.d_phi(0,1)->[MainPendulum.P2.d_phi(0,1)] and MainPendulum.P2.d_phi(0,1).
+    // Connect MainPendulum.P1.d_phi(0,1)->[MainPendulum.P3.d_phi(0,1)] to port MainPendulum.P3.d_phi(0,1)
+    // Iterate over ranges MainPendulum.P1.d_phi(0,1)->[MainPendulum.P3.d_phi(0,1)] and MainPendulum.P3.d_phi(0,1).
     {
         int src_runtime = 0; // Runtime index.
         int src_channel = 0; // Channel index.
         int src_bank = 0; // Bank index.
-        // Iterate over range MainPendulum.P2.d_phi(0,1).
+        // Iterate over range MainPendulum.P3.d_phi(0,1).
         {
             int dst_runtime = 0; // Runtime index.
             int dst_channel = 0; // Channel index.
             int dst_bank = 0; // Bank index.
             int range_count = 0;
-            mainpendulum_p2_self[dst_runtime]->_lf_d_phi = (pendulumcontroller_d_phi_t*)&mainpendulum_p1_self[src_runtime]->_lf_d_phi;
+            mainpendulum_p3_self[dst_runtime]->_lf_d_phi = (pendulumcontroller_d_phi_t*)&mainpendulum_p1_self[src_runtime]->_lf_d_phi;
         }
     }
     // Connect inputs and outputs for reactor MainPendulum.P2.
-    // Connect MainPendulum.P2.u(0,1)->[MainPendulum.P1.u(0,1), MainPendulum.P3.control(0,1)] to port MainPendulum.P1.u(0,1)
-    // Iterate over ranges MainPendulum.P2.u(0,1)->[MainPendulum.P1.u(0,1), MainPendulum.P3.control(0,1)] and MainPendulum.P1.u(0,1).
+    // Connect inputs and outputs for reactor MainPendulum.P3.
+    // Connect MainPendulum.P3.u(0,1)->[MainPendulum.P2.control(0,1), MainPendulum.P1.u(0,1)] to port MainPendulum.P2.control(0,1)
+    // Iterate over ranges MainPendulum.P3.u(0,1)->[MainPendulum.P2.control(0,1), MainPendulum.P1.u(0,1)] and MainPendulum.P2.control(0,1).
+    {
+        int src_runtime = 0; // Runtime index.
+        int src_channel = 0; // Channel index.
+        int src_bank = 0; // Bank index.
+        // Iterate over range MainPendulum.P2.control(0,1).
+        {
+            int dst_runtime = 0; // Runtime index.
+            int dst_channel = 0; // Channel index.
+            int dst_bank = 0; // Bank index.
+            int range_count = 0;
+            mainpendulum_p2_self[dst_runtime]->_lf_control = (print_control_t*)&mainpendulum_p3_self[src_runtime]->_lf_u;
+        }
+    }
+    // Connect MainPendulum.P3.u(0,1)->[MainPendulum.P2.control(0,1), MainPendulum.P1.u(0,1)] to port MainPendulum.P1.u(0,1)
+    // Iterate over ranges MainPendulum.P3.u(0,1)->[MainPendulum.P2.control(0,1), MainPendulum.P1.u(0,1)] and MainPendulum.P1.u(0,1).
     {
         int src_runtime = 0; // Runtime index.
         int src_channel = 0; // Channel index.
@@ -1577,38 +1549,12 @@ void _lf_initialize_trigger_objects() {
             int dst_channel = 0; // Channel index.
             int dst_bank = 0; // Bank index.
             int range_count = 0;
-            mainpendulum_p1_self[dst_runtime]->_lf_u = (pendulumsimulation_u_t*)&mainpendulum_p2_self[src_runtime]->_lf_u;
+            mainpendulum_p1_self[dst_runtime]->_lf_u = (pendulumsimulation_u_t*)&mainpendulum_p3_self[src_runtime]->_lf_u;
         }
     }
-    // Connect MainPendulum.P2.u(0,1)->[MainPendulum.P1.u(0,1), MainPendulum.P3.control(0,1)] to port MainPendulum.P3.control(0,1)
-    // Iterate over ranges MainPendulum.P2.u(0,1)->[MainPendulum.P1.u(0,1), MainPendulum.P3.control(0,1)] and MainPendulum.P3.control(0,1).
-    {
-        int src_runtime = 0; // Runtime index.
-        int src_channel = 0; // Channel index.
-        int src_bank = 0; // Bank index.
-        // Iterate over range MainPendulum.P3.control(0,1).
-        {
-            int dst_runtime = 0; // Runtime index.
-            int dst_channel = 0; // Channel index.
-            int dst_bank = 0; // Bank index.
-            int range_count = 0;
-            mainpendulum_p3_self[dst_runtime]->_lf_control = (print_control_t*)&mainpendulum_p2_self[src_runtime]->_lf_u;
-        }
-    }
-    // Connect inputs and outputs for reactor MainPendulum.P3.
     {
     }
     {
-        {
-            // Add action MainPendulum.P2.a to array of is_present fields.
-            _lf_is_present_fields[0] 
-                    = &mainpendulum_p2_self[0]->_lf_a.is_present;
-        }
-        {
-            // Add action MainPendulum.P2.b to array of is_present fields.
-            _lf_is_present_fields[1] 
-                    = &mainpendulum_p2_self[0]->_lf_b.is_present;
-        }
     }
     {
     }
@@ -1616,24 +1562,24 @@ void _lf_initialize_trigger_objects() {
         int count = 0;
         {
             // Add port MainPendulum.P1.theta to array of is_present fields.
-            _lf_is_present_fields[2 + count] = &mainpendulum_p1_self[0]->_lf_theta.is_present;
+            _lf_is_present_fields[0 + count] = &mainpendulum_p1_self[0]->_lf_theta.is_present;
             count++;
             // Add port MainPendulum.P1.d_theta to array of is_present fields.
-            _lf_is_present_fields[2 + count] = &mainpendulum_p1_self[0]->_lf_d_theta.is_present;
+            _lf_is_present_fields[0 + count] = &mainpendulum_p1_self[0]->_lf_d_theta.is_present;
             count++;
             // Add port MainPendulum.P1.phi to array of is_present fields.
-            _lf_is_present_fields[2 + count] = &mainpendulum_p1_self[0]->_lf_phi.is_present;
+            _lf_is_present_fields[0 + count] = &mainpendulum_p1_self[0]->_lf_phi.is_present;
             count++;
             // Add port MainPendulum.P1.d_phi to array of is_present fields.
-            _lf_is_present_fields[2 + count] = &mainpendulum_p1_self[0]->_lf_d_phi.is_present;
+            _lf_is_present_fields[0 + count] = &mainpendulum_p1_self[0]->_lf_d_phi.is_present;
             count++;
         }
     }
     {
         int count = 0;
         {
-            // Add port MainPendulum.P2.u to array of is_present fields.
-            _lf_is_present_fields[6 + count] = &mainpendulum_p2_self[0]->_lf_u.is_present;
+            // Add port MainPendulum.P3.u to array of is_present fields.
+            _lf_is_present_fields[4 + count] = &mainpendulum_p3_self[0]->_lf_u.is_present;
             count++;
         }
     }
@@ -1650,16 +1596,16 @@ void _lf_initialize_trigger_objects() {
             // deadline 140737488355327 shifted left 16 bits.
             mainpendulum_p1_self[0]->_lf__reaction_1.index = 0x7fffffffffff0001LL;
             mainpendulum_p1_self[0]->_lf__reaction_2.chain_id = 1;
-            // index is the OR of level 4 and 
+            // index is the OR of level 2 and 
             // deadline 140737488355327 shifted left 16 bits.
-            mainpendulum_p1_self[0]->_lf__reaction_2.index = 0x7fffffffffff0004LL;
+            mainpendulum_p1_self[0]->_lf__reaction_2.index = 0x7fffffffffff0002LL;
         }
         // Set reaction priorities for ReactorInstance MainPendulum.P2
         {
             mainpendulum_p2_self[0]->_lf__reaction_0.chain_id = 1;
-            // index is the OR of level 1 and 
+            // index is the OR of level 0 and 
             // deadline 140737488355327 shifted left 16 bits.
-            mainpendulum_p2_self[0]->_lf__reaction_0.index = 0x7fffffffffff0001LL;
+            mainpendulum_p2_self[0]->_lf__reaction_0.index = 0x7fffffffffff0000LL;
             mainpendulum_p2_self[0]->_lf__reaction_1.chain_id = 1;
             // index is the OR of level 2 and 
             // deadline 140737488355327 shifted left 16 bits.
@@ -1672,25 +1618,17 @@ void _lf_initialize_trigger_objects() {
         // Set reaction priorities for ReactorInstance MainPendulum.P3
         {
             mainpendulum_p3_self[0]->_lf__reaction_0.chain_id = 1;
-            // index is the OR of level 0 and 
+            // index is the OR of level 1 and 
             // deadline 140737488355327 shifted left 16 bits.
-            mainpendulum_p3_self[0]->_lf__reaction_0.index = 0x7fffffffffff0000LL;
-            mainpendulum_p3_self[0]->_lf__reaction_1.chain_id = 1;
-            // index is the OR of level 4 and 
-            // deadline 140737488355327 shifted left 16 bits.
-            mainpendulum_p3_self[0]->_lf__reaction_1.index = 0x7fffffffffff0004LL;
-            mainpendulum_p3_self[0]->_lf__reaction_2.chain_id = 1;
-            // index is the OR of level 5 and 
-            // deadline 140737488355327 shifted left 16 bits.
-            mainpendulum_p3_self[0]->_lf__reaction_2.index = 0x7fffffffffff0005LL;
+            mainpendulum_p3_self[0]->_lf__reaction_0.index = 0x7fffffffffff0001LL;
         }
     }
     // Initialize the scheduler
-    size_t num_reactions_per_level[6] = 
-        {2, 2, 1, 1, 2, 1};
+    size_t num_reactions_per_level[4] = 
+        {2, 2, 2, 1};
     sched_params_t sched_params = (sched_params_t) {
                             .num_reactions_per_level = &num_reactions_per_level[0],
-                            .num_reactions_per_level_size = (size_t) 6};
+                            .num_reactions_per_level_size = (size_t) 4};
     lf_sched_init(
         (size_t)_lf_number_of_workers,
         &sched_params
@@ -1709,8 +1647,10 @@ void _lf_initialize_timers() {
             _lf_initialize_timer(_lf_timer_triggers[i]);
         }
     }
+
 }
 void logical_tag_complete(tag_t tag_to_send) {
+
 }
 bool _lf_trigger_shutdown_reactions() {
     for (int i = 0; i < _lf_shutdown_reactions_size; i++) {
