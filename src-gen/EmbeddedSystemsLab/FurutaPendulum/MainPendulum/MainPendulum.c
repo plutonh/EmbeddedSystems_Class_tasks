@@ -291,193 +291,15 @@ pendulumsimulation_self_t* new_PendulumSimulation() {
     return self;
 }
 // =============== END reactor class PendulumSimulation
-// =============== START reactor class PendulumController
-// *********** From the preamble, verbatim:
-#include <math.h>
-double sign_2(double x) {
-    return (x > 0.0) - (x < 0.0); 
-}
-    
-// *********** End of preamble.
-typedef struct {
-    double value;
-    bool is_present;
-    int num_destinations;
-    lf_token_t* token;
-    int length;
-    void (*destructor) (void* value);
-    void* (*copy_constructor) (void* value);
-} pendulumcontroller_theta_t;
-typedef struct {
-    double value;
-    bool is_present;
-    int num_destinations;
-    lf_token_t* token;
-    int length;
-    void (*destructor) (void* value);
-    void* (*copy_constructor) (void* value);
-} pendulumcontroller_d_theta_t;
-typedef struct {
-    double value;
-    bool is_present;
-    int num_destinations;
-    lf_token_t* token;
-    int length;
-    void (*destructor) (void* value);
-    void* (*copy_constructor) (void* value);
-} pendulumcontroller_phi_t;
-typedef struct {
-    double value;
-    bool is_present;
-    int num_destinations;
-    lf_token_t* token;
-    int length;
-    void (*destructor) (void* value);
-    void* (*copy_constructor) (void* value);
-} pendulumcontroller_d_phi_t;
-typedef struct {
-    double value;
-    bool is_present;
-    int num_destinations;
-    lf_token_t* token;
-    int length;
-    void (*destructor) (void* value);
-    void* (*copy_constructor) (void* value);
-} pendulumcontroller_u_t;
-typedef struct {
-    struct self_base_t base;
-    double ci1;
-    double ci2;
-    double ci3;
-    double ci4;
-    double si1;
-    double si2;
-    double si3;
-    double si4;
-    double ph2;
-    double Energy;
-    double Control;
-    double phi_variable;
-    pendulumcontroller_theta_t* _lf_theta;
-    // width of -2 indicates that it is not a multiport.
-    int _lf_theta_width;
-    // Default input (in case it does not get connected)
-    pendulumcontroller_theta_t _lf_default__theta;
-    pendulumcontroller_d_theta_t* _lf_d_theta;
-    // width of -2 indicates that it is not a multiport.
-    int _lf_d_theta_width;
-    // Default input (in case it does not get connected)
-    pendulumcontroller_d_theta_t _lf_default__d_theta;
-    pendulumcontroller_phi_t* _lf_phi;
-    // width of -2 indicates that it is not a multiport.
-    int _lf_phi_width;
-    // Default input (in case it does not get connected)
-    pendulumcontroller_phi_t _lf_default__phi;
-    pendulumcontroller_d_phi_t* _lf_d_phi;
-    // width of -2 indicates that it is not a multiport.
-    int _lf_d_phi_width;
-    // Default input (in case it does not get connected)
-    pendulumcontroller_d_phi_t _lf_default__d_phi;
-    pendulumcontroller_u_t _lf_u;
-    int _lf_u_width;
-    reaction_t _lf__reaction_0;
-    trigger_t _lf__theta;
-    reaction_t* _lf__theta_reactions[1];
-    trigger_t _lf__d_theta;
-    reaction_t* _lf__d_theta_reactions[1];
-    trigger_t _lf__phi;
-    reaction_t* _lf__phi_reactions[1];
-    trigger_t _lf__d_phi;
-    reaction_t* _lf__d_phi_reactions[1];
-} pendulumcontroller_self_t;
-// ***** Start of method declarations.
-// ***** End of method declarations.
-#include "include/ctarget/set.h"
-void pendulumcontrollerreaction_function_0(void* instance_args) {
-    #pragma GCC diagnostic push
-    #pragma GCC diagnostic ignored "-Wunused-variable"
-    pendulumcontroller_self_t* self = (pendulumcontroller_self_t*)instance_args;
-    pendulumcontroller_theta_t* theta = self->_lf_theta;
-    int theta_width = self->_lf_theta_width;
-    pendulumcontroller_d_theta_t* d_theta = self->_lf_d_theta;
-    int d_theta_width = self->_lf_d_theta_width;
-    pendulumcontroller_phi_t* phi = self->_lf_phi;
-    int phi_width = self->_lf_phi_width;
-    pendulumcontroller_d_phi_t* d_phi = self->_lf_d_phi;
-    int d_phi_width = self->_lf_d_phi_width;
-    pendulumcontroller_u_t* u = &self->_lf_u;
-    #pragma GCC diagnostic pop
-    self->Energy  = 0.5 * pow(d_theta -> value, 2) / pow(6.3, 2) + 
-                    cos(theta -> value) - 1;
-    if(fabs(theta -> value) < 0.2) {
-        self->phi_variable = phi -> value;
-        self->Control = -1 * (theta -> value * self -> ci1 + d_theta -> value * 
-                        self -> ci2 + (phi -> value - self -> ph2) * self -> ci3 + 
-                        d_phi -> value * self -> ci4);
-    }
-    else {
-        self->Control = sign_2(self->Energy) * sign_2(d_theta -> value * 
-                        cos(theta -> value)) * fmin(fabs(0.5 * self->Energy), 0.5);
-    }
-    if(fabs(d_phi -> value) < 0.05) {
-        self->phi_variable = phi -> value;
-        self->Control = -1 * (theta -> value * self -> si1 + d_theta -> value * 
-                        self -> si2 + (phi -> value - self->phi_variable) * 
-                        self -> si3 + d_phi -> value * self -> si4);
-    }
-    lf_set(u, self->Control);
-}
-#include "include/ctarget/set_undef.h"
-pendulumcontroller_self_t* new_PendulumController() {
-    pendulumcontroller_self_t* self = (pendulumcontroller_self_t*)_lf_new_reactor(sizeof(pendulumcontroller_self_t));
-    // Set input by default to an always absent default input.
-    self->_lf_theta = &self->_lf_default__theta;
-    // Set input by default to an always absent default input.
-    self->_lf_d_theta = &self->_lf_default__d_theta;
-    // Set input by default to an always absent default input.
-    self->_lf_phi = &self->_lf_default__phi;
-    // Set input by default to an always absent default input.
-    self->_lf_d_phi = &self->_lf_default__d_phi;
-    self->_lf__reaction_0.number = 0;
-    self->_lf__reaction_0.function = pendulumcontrollerreaction_function_0;
-    self->_lf__reaction_0.self = self;
-    self->_lf__reaction_0.deadline_violation_handler = NULL;
-    self->_lf__reaction_0.STP_handler = NULL;
-    self->_lf__reaction_0.name = "?";
-    self->_lf__reaction_0.mode = NULL;
-    self->_lf__theta.last = NULL;
-    self->_lf__theta_reactions[0] = &self->_lf__reaction_0;
-    self->_lf__theta.reactions = &self->_lf__theta_reactions[0];
-    self->_lf__theta.number_of_reactions = 1;
-    self->_lf__theta.element_size = sizeof(double);
-    self->_lf__d_theta.last = NULL;
-    self->_lf__d_theta_reactions[0] = &self->_lf__reaction_0;
-    self->_lf__d_theta.reactions = &self->_lf__d_theta_reactions[0];
-    self->_lf__d_theta.number_of_reactions = 1;
-    self->_lf__d_theta.element_size = sizeof(double);
-    self->_lf__phi.last = NULL;
-    self->_lf__phi_reactions[0] = &self->_lf__reaction_0;
-    self->_lf__phi.reactions = &self->_lf__phi_reactions[0];
-    self->_lf__phi.number_of_reactions = 1;
-    self->_lf__phi.element_size = sizeof(double);
-    self->_lf__d_phi.last = NULL;
-    self->_lf__d_phi_reactions[0] = &self->_lf__reaction_0;
-    self->_lf__d_phi.reactions = &self->_lf__d_phi_reactions[0];
-    self->_lf__d_phi.number_of_reactions = 1;
-    self->_lf__d_phi.element_size = sizeof(double);
-    return self;
-}
-// =============== END reactor class PendulumController
 // =============== START reactor class Print
 // *********** From the preamble, verbatim:
 #include <math.h>
 #define PI 3.14159265
-// Really checks sign. True is 1, False is 0.
-double sign_1(double x) {
+double sign(double x) {
         return (x > 0.0) - (x < 0.0); 
 }
 double restrictAngle(double theta) {
-        return((fmod(fabs(theta) + PI, 2 * PI) - PI) * sign_1(theta));
+        return((fmod(fabs(theta) + PI, 2 * PI) - PI) * sign(theta));
 }
 // *********** End of preamble.
 typedef struct {
@@ -647,6 +469,189 @@ print_self_t* new_Print() {
     return self;
 }
 // =============== END reactor class Print
+// =============== START reactor class PendulumController
+// *********** From the preamble, verbatim:
+#include <math.h>
+    
+// *********** End of preamble.
+typedef struct {
+    double value;
+    bool is_present;
+    int num_destinations;
+    lf_token_t* token;
+    int length;
+    void (*destructor) (void* value);
+    void* (*copy_constructor) (void* value);
+} pendulumcontroller_theta_t;
+typedef struct {
+    double value;
+    bool is_present;
+    int num_destinations;
+    lf_token_t* token;
+    int length;
+    void (*destructor) (void* value);
+    void* (*copy_constructor) (void* value);
+} pendulumcontroller_d_theta_t;
+typedef struct {
+    double value;
+    bool is_present;
+    int num_destinations;
+    lf_token_t* token;
+    int length;
+    void (*destructor) (void* value);
+    void* (*copy_constructor) (void* value);
+} pendulumcontroller_phi_t;
+typedef struct {
+    double value;
+    bool is_present;
+    int num_destinations;
+    lf_token_t* token;
+    int length;
+    void (*destructor) (void* value);
+    void* (*copy_constructor) (void* value);
+} pendulumcontroller_d_phi_t;
+typedef struct {
+    double value;
+    bool is_present;
+    int num_destinations;
+    lf_token_t* token;
+    int length;
+    void (*destructor) (void* value);
+    void* (*copy_constructor) (void* value);
+} pendulumcontroller_u_t;
+typedef struct {
+    struct self_base_t base;
+    double ci1;
+    double ci2;
+    double ci3;
+    double ci4;
+    double si1;
+    double si2;
+    double si3;
+    double si4;
+    double ph2;
+    double Energy;
+    double Control;
+    double phi_variable;
+    pendulumcontroller_theta_t* _lf_theta;
+    // width of -2 indicates that it is not a multiport.
+    int _lf_theta_width;
+    // Default input (in case it does not get connected)
+    pendulumcontroller_theta_t _lf_default__theta;
+    pendulumcontroller_d_theta_t* _lf_d_theta;
+    // width of -2 indicates that it is not a multiport.
+    int _lf_d_theta_width;
+    // Default input (in case it does not get connected)
+    pendulumcontroller_d_theta_t _lf_default__d_theta;
+    pendulumcontroller_phi_t* _lf_phi;
+    // width of -2 indicates that it is not a multiport.
+    int _lf_phi_width;
+    // Default input (in case it does not get connected)
+    pendulumcontroller_phi_t _lf_default__phi;
+    pendulumcontroller_d_phi_t* _lf_d_phi;
+    // width of -2 indicates that it is not a multiport.
+    int _lf_d_phi_width;
+    // Default input (in case it does not get connected)
+    pendulumcontroller_d_phi_t _lf_default__d_phi;
+    pendulumcontroller_u_t _lf_u;
+    int _lf_u_width;
+    reaction_t _lf__reaction_0;
+    trigger_t _lf__theta;
+    reaction_t* _lf__theta_reactions[1];
+    trigger_t _lf__d_theta;
+    reaction_t* _lf__d_theta_reactions[1];
+    trigger_t _lf__phi;
+    reaction_t* _lf__phi_reactions[1];
+    trigger_t _lf__d_phi;
+    reaction_t* _lf__d_phi_reactions[1];
+} pendulumcontroller_self_t;
+// ***** Start of method declarations.
+// ***** End of method declarations.
+#include "include/ctarget/set.h"
+void pendulumcontrollerreaction_function_0(void* instance_args) {
+    #pragma GCC diagnostic push
+    #pragma GCC diagnostic ignored "-Wunused-variable"
+    pendulumcontroller_self_t* self = (pendulumcontroller_self_t*)instance_args;
+    pendulumcontroller_theta_t* theta = self->_lf_theta;
+    int theta_width = self->_lf_theta_width;
+    pendulumcontroller_d_theta_t* d_theta = self->_lf_d_theta;
+    int d_theta_width = self->_lf_d_theta_width;
+    pendulumcontroller_phi_t* phi = self->_lf_phi;
+    int phi_width = self->_lf_phi_width;
+    pendulumcontroller_d_phi_t* d_phi = self->_lf_d_phi;
+    int d_phi_width = self->_lf_d_phi_width;
+    pendulumcontroller_u_t* u = &self->_lf_u;
+    #pragma GCC diagnostic pop
+    // declare statement of 'self->Energy'
+    self->Energy  = 0.5 * pow(d_theta -> value, 2) / pow(6.3, 2) + 
+                    cos(theta -> value) - 1;
+    
+    // if absolue vaule of theta is smaller than 0.2, have to go to the 'Catch' state
+    // and if larger than 0.2, then have to go to the 'SwingUp' state
+    if(fabs(theta -> value) < 0.2) {
+        // declare statement of 'self->Control' of 'Catch' state
+        self->Control = -1 * (theta -> value * self -> ci1 + d_theta -> value * 
+                        self -> ci2 + (phi -> value - self -> ph2) * self -> ci3 + 
+                        d_phi -> value * self -> ci4);
+    }
+    else {
+        // declare statement of 'self->Contol' of 'SwingUp' state
+        self->Control = sign(self->Energy) * sign(d_theta -> value * 
+                        cos(theta -> value)) * fmin(fabs(0.5 * self->Energy), 0.5);
+    }
+    
+    // if absolute vaule of d_phi is smaller than 0.05, have to go to the 'Stabilize' state
+    if(fabs(d_phi -> value) < 0.05) {
+        self->phi_variable = phi -> value;
+        self->Control = -1 * (theta -> value * self -> si1 + d_theta -> value * 
+                        self -> si2 + (phi -> value - self->phi_variable) * 
+                        self -> si3 + d_phi -> value * self -> si4);
+    }
+    
+    // Continuously set the output 'u' as a 'self->Control' value
+    lf_set(u, self->Control);
+}
+#include "include/ctarget/set_undef.h"
+pendulumcontroller_self_t* new_PendulumController() {
+    pendulumcontroller_self_t* self = (pendulumcontroller_self_t*)_lf_new_reactor(sizeof(pendulumcontroller_self_t));
+    // Set input by default to an always absent default input.
+    self->_lf_theta = &self->_lf_default__theta;
+    // Set input by default to an always absent default input.
+    self->_lf_d_theta = &self->_lf_default__d_theta;
+    // Set input by default to an always absent default input.
+    self->_lf_phi = &self->_lf_default__phi;
+    // Set input by default to an always absent default input.
+    self->_lf_d_phi = &self->_lf_default__d_phi;
+    self->_lf__reaction_0.number = 0;
+    self->_lf__reaction_0.function = pendulumcontrollerreaction_function_0;
+    self->_lf__reaction_0.self = self;
+    self->_lf__reaction_0.deadline_violation_handler = NULL;
+    self->_lf__reaction_0.STP_handler = NULL;
+    self->_lf__reaction_0.name = "?";
+    self->_lf__reaction_0.mode = NULL;
+    self->_lf__theta.last = NULL;
+    self->_lf__theta_reactions[0] = &self->_lf__reaction_0;
+    self->_lf__theta.reactions = &self->_lf__theta_reactions[0];
+    self->_lf__theta.number_of_reactions = 1;
+    self->_lf__theta.element_size = sizeof(double);
+    self->_lf__d_theta.last = NULL;
+    self->_lf__d_theta_reactions[0] = &self->_lf__reaction_0;
+    self->_lf__d_theta.reactions = &self->_lf__d_theta_reactions[0];
+    self->_lf__d_theta.number_of_reactions = 1;
+    self->_lf__d_theta.element_size = sizeof(double);
+    self->_lf__phi.last = NULL;
+    self->_lf__phi_reactions[0] = &self->_lf__reaction_0;
+    self->_lf__phi.reactions = &self->_lf__phi_reactions[0];
+    self->_lf__phi.number_of_reactions = 1;
+    self->_lf__phi.element_size = sizeof(double);
+    self->_lf__d_phi.last = NULL;
+    self->_lf__d_phi_reactions[0] = &self->_lf__reaction_0;
+    self->_lf__d_phi.reactions = &self->_lf__d_phi_reactions[0];
+    self->_lf__d_phi.number_of_reactions = 1;
+    self->_lf__d_phi.element_size = sizeof(double);
+    return self;
+}
+// =============== END reactor class PendulumController
 // =============== START reactor class MainPendulum
 typedef struct {
     struct self_base_t base;
@@ -690,8 +695,8 @@ void _lf_initialize_trigger_objects() {
     int _lf_tokens_with_ref_count_count = 0;
     mainpendulum_self_t* mainpendulum_self[1];
     pendulumsimulation_self_t* mainpendulum_p1_self[1];
-    pendulumcontroller_self_t* mainpendulum_p2_self[1];
-    print_self_t* mainpendulum_p3_self[1];
+    print_self_t* mainpendulum_p2_self[1];
+    pendulumcontroller_self_t* mainpendulum_p3_self[1];
     // ***** Start initializing MainPendulum of class MainPendulum
     mainpendulum_self[0] = new_MainPendulum();
     int bank_index = 0;
@@ -741,78 +746,78 @@ void _lf_initialize_trigger_objects() {
         //***** End initializing MainPendulum.P1
     }
     {
-        // ***** Start initializing MainPendulum.P2 of class PendulumController
-        mainpendulum_p2_self[0] = new_PendulumController();
+        // ***** Start initializing MainPendulum.P2 of class Print
+        mainpendulum_p2_self[0] = new_Print();
         int bank_index = 0;
+        mainpendulum_p2_self[0]->filename = "/home/plutonh/project/EmbeddedSystemsLab/FurutaPendulum/pendulum.csv";
         // width of -2 indicates that it is not a multiport.
-        mainpendulum_p2_self[0]->_lf_u_width = -2;
+        mainpendulum_p2_self[0]->_lf_control_width = -2;
         // width of -2 indicates that it is not a multiport.
         mainpendulum_p2_self[0]->_lf_theta_width = -2;
         // width of -2 indicates that it is not a multiport.
-        mainpendulum_p2_self[0]->_lf_d_theta_width = -2;
-        // width of -2 indicates that it is not a multiport.
         mainpendulum_p2_self[0]->_lf_phi_width = -2;
-        // width of -2 indicates that it is not a multiport.
-        mainpendulum_p2_self[0]->_lf_d_phi_width = -2;
+        _lf_startup_reactions[_lf_startup_reactions_count++] = &mainpendulum_p2_self[0]->_lf__reaction_0;
+        _lf_shutdown_reactions[_lf_shutdown_reactions_count++] = &mainpendulum_p2_self[0]->_lf__reaction_2;
         { // For scoping
-            static double _initial = -1.04945717118225;
-            mainpendulum_p2_self[0]->ci1 = _initial;
-        } // End scoping.
-        { // For scoping
-            static double _initial = -0.20432286791216;
-            mainpendulum_p2_self[0]->ci2 = _initial;
-        } // End scoping.
-        { // For scoping
-            static double _initial = -0.00735846749875;
-            mainpendulum_p2_self[0]->ci3 = _initial;
-        } // End scoping.
-        { // For scoping
-            static double _initial = -0.00735846749875;
-            mainpendulum_p2_self[0]->ci4 = _initial;
-        } // End scoping.
-        { // For scoping
-            static double _initial = -1.70871686211144;
-            mainpendulum_p2_self[0]->si1 = _initial;
-        } // End scoping.
-        { // For scoping
-            static double _initial = -0.30395427746831;
-            mainpendulum_p2_self[0]->si2 = _initial;
-        } // End scoping.
-        { // For scoping
-            static double _initial = -0.03254225945714;
-            mainpendulum_p2_self[0]->si3 = _initial;
-        } // End scoping.
-        { // For scoping
-            static double _initial = -0.05808270221773;
-            mainpendulum_p2_self[0]->si4 = _initial;
-        } // End scoping.
-        { // For scoping
-            static double _initial = -7.0124562;
-            mainpendulum_p2_self[0]->ph2 = _initial;
+            static FILE* _initial = NULL;
+            mainpendulum_p2_self[0]->file = _initial;
         } // End scoping.
         mainpendulum_p2_self[0]->_lf__reaction_0.deadline = NEVER;
+        mainpendulum_p2_self[0]->_lf__reaction_1.deadline = NEVER;
+        mainpendulum_p2_self[0]->_lf__reaction_2.deadline = NEVER;
         //***** End initializing MainPendulum.P2
     }
     {
-        // ***** Start initializing MainPendulum.P3 of class Print
-        mainpendulum_p3_self[0] = new_Print();
+        // ***** Start initializing MainPendulum.P3 of class PendulumController
+        mainpendulum_p3_self[0] = new_PendulumController();
         int bank_index = 0;
-        mainpendulum_p3_self[0]->filename = "/home/plutonh/project/EmbeddedSystemsLab/FurutaPendulum/pendulum.csv";
         // width of -2 indicates that it is not a multiport.
-        mainpendulum_p3_self[0]->_lf_control_width = -2;
+        mainpendulum_p3_self[0]->_lf_u_width = -2;
         // width of -2 indicates that it is not a multiport.
         mainpendulum_p3_self[0]->_lf_theta_width = -2;
         // width of -2 indicates that it is not a multiport.
+        mainpendulum_p3_self[0]->_lf_d_theta_width = -2;
+        // width of -2 indicates that it is not a multiport.
         mainpendulum_p3_self[0]->_lf_phi_width = -2;
-        _lf_startup_reactions[_lf_startup_reactions_count++] = &mainpendulum_p3_self[0]->_lf__reaction_0;
-        _lf_shutdown_reactions[_lf_shutdown_reactions_count++] = &mainpendulum_p3_self[0]->_lf__reaction_2;
+        // width of -2 indicates that it is not a multiport.
+        mainpendulum_p3_self[0]->_lf_d_phi_width = -2;
         { // For scoping
-            static FILE* _initial = NULL;
-            mainpendulum_p3_self[0]->file = _initial;
+            static double _initial = -1.04945717118225;
+            mainpendulum_p3_self[0]->ci1 = _initial;
+        } // End scoping.
+        { // For scoping
+            static double _initial = -0.20432286791216;
+            mainpendulum_p3_self[0]->ci2 = _initial;
+        } // End scoping.
+        { // For scoping
+            static double _initial = -0.00735846749875;
+            mainpendulum_p3_self[0]->ci3 = _initial;
+        } // End scoping.
+        { // For scoping
+            static double _initial = -0.00735846749875;
+            mainpendulum_p3_self[0]->ci4 = _initial;
+        } // End scoping.
+        { // For scoping
+            static double _initial = -1.70871686211144;
+            mainpendulum_p3_self[0]->si1 = _initial;
+        } // End scoping.
+        { // For scoping
+            static double _initial = -0.30395427746831;
+            mainpendulum_p3_self[0]->si2 = _initial;
+        } // End scoping.
+        { // For scoping
+            static double _initial = -0.03254225945714;
+            mainpendulum_p3_self[0]->si3 = _initial;
+        } // End scoping.
+        { // For scoping
+            static double _initial = -0.05808270221773;
+            mainpendulum_p3_self[0]->si4 = _initial;
+        } // End scoping.
+        { // For scoping
+            static double _initial = -7.0124562;
+            mainpendulum_p3_self[0]->ph2 = _initial;
         } // End scoping.
         mainpendulum_p3_self[0]->_lf__reaction_0.deadline = NEVER;
-        mainpendulum_p3_self[0]->_lf__reaction_1.deadline = NEVER;
-        mainpendulum_p3_self[0]->_lf__reaction_2.deadline = NEVER;
         //***** End initializing MainPendulum.P3
     }
     //***** End initializing MainPendulum
@@ -873,54 +878,54 @@ void _lf_initialize_trigger_objects() {
         {
             // Total number of outputs (single ports and multiport channels)
             // produced by reaction_0 of MainPendulum.P2.
-            mainpendulum_p2_self[0]->_lf__reaction_0.num_outputs = 1;
-            // Allocate memory for triggers[] and triggered_sizes[] on the reaction_t
-            // struct for this reaction.
-            mainpendulum_p2_self[0]->_lf__reaction_0.triggers = (trigger_t***)_lf_allocate(
-                    1, sizeof(trigger_t**),
-                    &mainpendulum_p2_self[0]->base.allocations);
-            mainpendulum_p2_self[0]->_lf__reaction_0.triggered_sizes = (int*)_lf_allocate(
-                    1, sizeof(int),
-                    &mainpendulum_p2_self[0]->base.allocations);
-            mainpendulum_p2_self[0]->_lf__reaction_0.output_produced = (bool**)_lf_allocate(
-                    1, sizeof(bool*),
-                    &mainpendulum_p2_self[0]->base.allocations);
+            mainpendulum_p2_self[0]->_lf__reaction_0.num_outputs = 0;
             {
                 int count = 0;
-                {
-                    mainpendulum_p2_self[0]->_lf__reaction_0.output_produced[count++] = &mainpendulum_p2_self[0]->_lf_u.is_present;
-                }
             }
             
             // ** End initialization for reaction 0 of MainPendulum.P2
+            // Total number of outputs (single ports and multiport channels)
+            // produced by reaction_1 of MainPendulum.P2.
+            mainpendulum_p2_self[0]->_lf__reaction_1.num_outputs = 0;
+            {
+                int count = 0;
+            }
+            
+            // ** End initialization for reaction 1 of MainPendulum.P2
+            // Total number of outputs (single ports and multiport channels)
+            // produced by reaction_2 of MainPendulum.P2.
+            mainpendulum_p2_self[0]->_lf__reaction_2.num_outputs = 0;
+            {
+                int count = 0;
+            }
+            
+            // ** End initialization for reaction 2 of MainPendulum.P2
         }
         // **** End of deferred initialize for MainPendulum.P2
         // **** Start deferred initialize for MainPendulum.P3
         {
             // Total number of outputs (single ports and multiport channels)
             // produced by reaction_0 of MainPendulum.P3.
-            mainpendulum_p3_self[0]->_lf__reaction_0.num_outputs = 0;
+            mainpendulum_p3_self[0]->_lf__reaction_0.num_outputs = 1;
+            // Allocate memory for triggers[] and triggered_sizes[] on the reaction_t
+            // struct for this reaction.
+            mainpendulum_p3_self[0]->_lf__reaction_0.triggers = (trigger_t***)_lf_allocate(
+                    1, sizeof(trigger_t**),
+                    &mainpendulum_p3_self[0]->base.allocations);
+            mainpendulum_p3_self[0]->_lf__reaction_0.triggered_sizes = (int*)_lf_allocate(
+                    1, sizeof(int),
+                    &mainpendulum_p3_self[0]->base.allocations);
+            mainpendulum_p3_self[0]->_lf__reaction_0.output_produced = (bool**)_lf_allocate(
+                    1, sizeof(bool*),
+                    &mainpendulum_p3_self[0]->base.allocations);
             {
                 int count = 0;
+                {
+                    mainpendulum_p3_self[0]->_lf__reaction_0.output_produced[count++] = &mainpendulum_p3_self[0]->_lf_u.is_present;
+                }
             }
             
             // ** End initialization for reaction 0 of MainPendulum.P3
-            // Total number of outputs (single ports and multiport channels)
-            // produced by reaction_1 of MainPendulum.P3.
-            mainpendulum_p3_self[0]->_lf__reaction_1.num_outputs = 0;
-            {
-                int count = 0;
-            }
-            
-            // ** End initialization for reaction 1 of MainPendulum.P3
-            // Total number of outputs (single ports and multiport channels)
-            // produced by reaction_2 of MainPendulum.P3.
-            mainpendulum_p3_self[0]->_lf__reaction_2.num_outputs = 0;
-            {
-                int count = 0;
-            }
-            
-            // ** End initialization for reaction 2 of MainPendulum.P3
         }
         // **** End of deferred initialize for MainPendulum.P3
     }
@@ -937,7 +942,7 @@ void _lf_initialize_trigger_objects() {
         mainpendulum_p1_self[src_runtime]->_lf_theta.num_destinations = 2;
     }
     // For reference counting, set num_destinations for port MainPendulum.P1.d_theta.
-    // Iterate over range MainPendulum.P1.d_theta(0,1)->[MainPendulum.P2.d_theta(0,1)].
+    // Iterate over range MainPendulum.P1.d_theta(0,1)->[MainPendulum.P3.d_theta(0,1)].
     {
         int src_runtime = 0; // Runtime index.
         int src_channel = 0; // Channel index.
@@ -955,7 +960,7 @@ void _lf_initialize_trigger_objects() {
         mainpendulum_p1_self[src_runtime]->_lf_phi.num_destinations = 2;
     }
     // For reference counting, set num_destinations for port MainPendulum.P1.d_phi.
-    // Iterate over range MainPendulum.P1.d_phi(0,1)->[MainPendulum.P2.d_phi(0,1)].
+    // Iterate over range MainPendulum.P1.d_phi(0,1)->[MainPendulum.P3.d_phi(0,1)].
     {
         int src_runtime = 0; // Runtime index.
         int src_channel = 0; // Channel index.
@@ -981,7 +986,7 @@ void _lf_initialize_trigger_objects() {
                     &mainpendulum_p1_self[src_runtime]->base.allocations); 
             mainpendulum_p1_self[src_runtime]->_lf__reaction_0.triggers[triggers_index[src_runtime]++] = trigger_array;
         }
-        // Iterate over range MainPendulum.P1.d_theta(0,1)->[MainPendulum.P2.d_theta(0,1)].
+        // Iterate over range MainPendulum.P1.d_theta(0,1)->[MainPendulum.P3.d_theta(0,1)].
         {
             int src_runtime = 0; // Runtime index.
             int src_channel = 0; // Channel index.
@@ -1013,7 +1018,7 @@ void _lf_initialize_trigger_objects() {
                     &mainpendulum_p1_self[src_runtime]->base.allocations); 
             mainpendulum_p1_self[src_runtime]->_lf__reaction_0.triggers[triggers_index[src_runtime]++] = trigger_array;
         }
-        // Iterate over range MainPendulum.P1.d_phi(0,1)->[MainPendulum.P2.d_phi(0,1)].
+        // Iterate over range MainPendulum.P1.d_phi(0,1)->[MainPendulum.P3.d_phi(0,1)].
         {
             int src_runtime = 0; // Runtime index.
             int src_channel = 0; // Channel index.
@@ -1061,19 +1066,19 @@ void _lf_initialize_trigger_objects() {
             }
         }
         for (int i = 0; i < 1; i++) triggers_index[i] = 1;
-        // Iterate over ranges MainPendulum.P1.d_theta(0,1)->[MainPendulum.P2.d_theta(0,1)] and MainPendulum.P2.d_theta(0,1).
+        // Iterate over ranges MainPendulum.P1.d_theta(0,1)->[MainPendulum.P3.d_theta(0,1)] and MainPendulum.P3.d_theta(0,1).
         {
             int src_runtime = 0; // Runtime index.
             int src_channel = 0; // Channel index.
             int src_bank = 0; // Bank index.
-            // Iterate over range MainPendulum.P2.d_theta(0,1).
+            // Iterate over range MainPendulum.P3.d_theta(0,1).
             {
                 int dst_runtime = 0; // Runtime index.
                 int dst_channel = 0; // Channel index.
                 int dst_bank = 0; // Bank index.
                 int range_count = 0;
-                // Point to destination port MainPendulum.P2.d_theta's trigger struct.
-                mainpendulum_p1_self[src_runtime]->_lf__reaction_0.triggers[triggers_index[src_runtime] + src_channel][0] = &mainpendulum_p2_self[dst_runtime]->_lf__d_theta;
+                // Point to destination port MainPendulum.P3.d_theta's trigger struct.
+                mainpendulum_p1_self[src_runtime]->_lf__reaction_0.triggers[triggers_index[src_runtime] + src_channel][0] = &mainpendulum_p3_self[dst_runtime]->_lf__d_theta;
             }
         }
         for (int i = 0; i < 1; i++) triggers_index[i] = 2;
@@ -1108,53 +1113,70 @@ void _lf_initialize_trigger_objects() {
             }
         }
         for (int i = 0; i < 1; i++) triggers_index[i] = 3;
-        // Iterate over ranges MainPendulum.P1.d_phi(0,1)->[MainPendulum.P2.d_phi(0,1)] and MainPendulum.P2.d_phi(0,1).
+        // Iterate over ranges MainPendulum.P1.d_phi(0,1)->[MainPendulum.P3.d_phi(0,1)] and MainPendulum.P3.d_phi(0,1).
         {
             int src_runtime = 0; // Runtime index.
             int src_channel = 0; // Channel index.
             int src_bank = 0; // Bank index.
-            // Iterate over range MainPendulum.P2.d_phi(0,1).
+            // Iterate over range MainPendulum.P3.d_phi(0,1).
             {
                 int dst_runtime = 0; // Runtime index.
                 int dst_channel = 0; // Channel index.
                 int dst_bank = 0; // Bank index.
                 int range_count = 0;
-                // Point to destination port MainPendulum.P2.d_phi's trigger struct.
-                mainpendulum_p1_self[src_runtime]->_lf__reaction_0.triggers[triggers_index[src_runtime] + src_channel][0] = &mainpendulum_p2_self[dst_runtime]->_lf__d_phi;
+                // Point to destination port MainPendulum.P3.d_phi's trigger struct.
+                mainpendulum_p1_self[src_runtime]->_lf__reaction_0.triggers[triggers_index[src_runtime] + src_channel][0] = &mainpendulum_p3_self[dst_runtime]->_lf__d_phi;
             }
         }
     }
     // **** End of non-nested deferred initialize for MainPendulum.P1
     // **** Start non-nested deferred initialize for MainPendulum.P2
-    // For reference counting, set num_destinations for port MainPendulum.P2.u.
-    // Iterate over range MainPendulum.P2.u(0,1)->[MainPendulum.P1.u(0,1), MainPendulum.P3.control(0,1)].
+    // **** End of non-nested deferred initialize for MainPendulum.P2
+    // **** Start non-nested deferred initialize for MainPendulum.P3
+    // For reference counting, set num_destinations for port MainPendulum.P3.u.
+    // Iterate over range MainPendulum.P3.u(0,1)->[MainPendulum.P2.control(0,1), MainPendulum.P1.u(0,1)].
     {
         int src_runtime = 0; // Runtime index.
         int src_channel = 0; // Channel index.
         int src_bank = 0; // Bank index.
         int range_count = 0;
-        mainpendulum_p2_self[src_runtime]->_lf_u.num_destinations = 2;
+        mainpendulum_p3_self[src_runtime]->_lf_u.num_destinations = 2;
     }
     {
         int triggers_index[1] = { 0 }; // Number of bank members with the reaction.
-        // Iterate over range MainPendulum.P2.u(0,1)->[MainPendulum.P1.u(0,1), MainPendulum.P3.control(0,1)].
+        // Iterate over range MainPendulum.P3.u(0,1)->[MainPendulum.P2.control(0,1), MainPendulum.P1.u(0,1)].
         {
             int src_runtime = 0; // Runtime index.
             int src_channel = 0; // Channel index.
             int src_bank = 0; // Bank index.
             int range_count = 0;
-            // Reaction 0 of MainPendulum.P2 triggers 2 downstream reactions
-            // through port MainPendulum.P2.u.
-            mainpendulum_p2_self[src_runtime]->_lf__reaction_0.triggered_sizes[triggers_index[src_runtime]] = 2;
-            // For reaction 0 of MainPendulum.P2, allocate an
-            // array of trigger pointers for downstream reactions through port MainPendulum.P2.u
+            // Reaction 0 of MainPendulum.P3 triggers 2 downstream reactions
+            // through port MainPendulum.P3.u.
+            mainpendulum_p3_self[src_runtime]->_lf__reaction_0.triggered_sizes[triggers_index[src_runtime]] = 2;
+            // For reaction 0 of MainPendulum.P3, allocate an
+            // array of trigger pointers for downstream reactions through port MainPendulum.P3.u
             trigger_t** trigger_array = (trigger_t**)_lf_allocate(
                     2, sizeof(trigger_t*),
-                    &mainpendulum_p2_self[src_runtime]->base.allocations); 
-            mainpendulum_p2_self[src_runtime]->_lf__reaction_0.triggers[triggers_index[src_runtime]++] = trigger_array;
+                    &mainpendulum_p3_self[src_runtime]->base.allocations); 
+            mainpendulum_p3_self[src_runtime]->_lf__reaction_0.triggers[triggers_index[src_runtime]++] = trigger_array;
         }
         for (int i = 0; i < 1; i++) triggers_index[i] = 0;
-        // Iterate over ranges MainPendulum.P2.u(0,1)->[MainPendulum.P1.u(0,1), MainPendulum.P3.control(0,1)] and MainPendulum.P1.u(0,1).
+        // Iterate over ranges MainPendulum.P3.u(0,1)->[MainPendulum.P2.control(0,1), MainPendulum.P1.u(0,1)] and MainPendulum.P2.control(0,1).
+        {
+            int src_runtime = 0; // Runtime index.
+            int src_channel = 0; // Channel index.
+            int src_bank = 0; // Bank index.
+            // Iterate over range MainPendulum.P2.control(0,1).
+            {
+                int dst_runtime = 0; // Runtime index.
+                int dst_channel = 0; // Channel index.
+                int dst_bank = 0; // Bank index.
+                int range_count = 0;
+                // Point to destination port MainPendulum.P2.control's trigger struct.
+                mainpendulum_p3_self[src_runtime]->_lf__reaction_0.triggers[triggers_index[src_runtime] + src_channel][0] = &mainpendulum_p2_self[dst_runtime]->_lf__control;
+            }
+        }
+        // Iterate over ranges MainPendulum.P3.u(0,1)->[MainPendulum.P2.control(0,1), MainPendulum.P1.u(0,1)] and MainPendulum.P1.u(0,1).
         {
             int src_runtime = 0; // Runtime index.
             int src_channel = 0; // Channel index.
@@ -1166,27 +1188,10 @@ void _lf_initialize_trigger_objects() {
                 int dst_bank = 0; // Bank index.
                 int range_count = 0;
                 // Point to destination port MainPendulum.P1.u's trigger struct.
-                mainpendulum_p2_self[src_runtime]->_lf__reaction_0.triggers[triggers_index[src_runtime] + src_channel][0] = &mainpendulum_p1_self[dst_runtime]->_lf__u;
-            }
-        }
-        // Iterate over ranges MainPendulum.P2.u(0,1)->[MainPendulum.P1.u(0,1), MainPendulum.P3.control(0,1)] and MainPendulum.P3.control(0,1).
-        {
-            int src_runtime = 0; // Runtime index.
-            int src_channel = 0; // Channel index.
-            int src_bank = 0; // Bank index.
-            // Iterate over range MainPendulum.P3.control(0,1).
-            {
-                int dst_runtime = 0; // Runtime index.
-                int dst_channel = 0; // Channel index.
-                int dst_bank = 0; // Bank index.
-                int range_count = 0;
-                // Point to destination port MainPendulum.P3.control's trigger struct.
-                mainpendulum_p2_self[src_runtime]->_lf__reaction_0.triggers[triggers_index[src_runtime] + src_channel][1] = &mainpendulum_p3_self[dst_runtime]->_lf__control;
+                mainpendulum_p3_self[src_runtime]->_lf__reaction_0.triggers[triggers_index[src_runtime] + src_channel][1] = &mainpendulum_p1_self[dst_runtime]->_lf__u;
             }
         }
     }
-    // **** End of non-nested deferred initialize for MainPendulum.P2
-    // **** Start non-nested deferred initialize for MainPendulum.P3
     // **** End of non-nested deferred initialize for MainPendulum.P3
     // **** End of non-nested deferred initialize for MainPendulum
     // Connect inputs and outputs for reactor MainPendulum.
@@ -1203,7 +1208,7 @@ void _lf_initialize_trigger_objects() {
             int dst_channel = 0; // Channel index.
             int dst_bank = 0; // Bank index.
             int range_count = 0;
-            mainpendulum_p2_self[dst_runtime]->_lf_theta = (pendulumcontroller_theta_t*)&mainpendulum_p1_self[src_runtime]->_lf_theta;
+            mainpendulum_p2_self[dst_runtime]->_lf_theta = (print_theta_t*)&mainpendulum_p1_self[src_runtime]->_lf_theta;
         }
     }
     // Connect MainPendulum.P1.theta(0,1)->[MainPendulum.P2.theta(0,1), MainPendulum.P3.theta(0,1)] to port MainPendulum.P3.theta(0,1)
@@ -1218,22 +1223,22 @@ void _lf_initialize_trigger_objects() {
             int dst_channel = 0; // Channel index.
             int dst_bank = 0; // Bank index.
             int range_count = 0;
-            mainpendulum_p3_self[dst_runtime]->_lf_theta = (print_theta_t*)&mainpendulum_p1_self[src_runtime]->_lf_theta;
+            mainpendulum_p3_self[dst_runtime]->_lf_theta = (pendulumcontroller_theta_t*)&mainpendulum_p1_self[src_runtime]->_lf_theta;
         }
     }
-    // Connect MainPendulum.P1.d_theta(0,1)->[MainPendulum.P2.d_theta(0,1)] to port MainPendulum.P2.d_theta(0,1)
-    // Iterate over ranges MainPendulum.P1.d_theta(0,1)->[MainPendulum.P2.d_theta(0,1)] and MainPendulum.P2.d_theta(0,1).
+    // Connect MainPendulum.P1.d_theta(0,1)->[MainPendulum.P3.d_theta(0,1)] to port MainPendulum.P3.d_theta(0,1)
+    // Iterate over ranges MainPendulum.P1.d_theta(0,1)->[MainPendulum.P3.d_theta(0,1)] and MainPendulum.P3.d_theta(0,1).
     {
         int src_runtime = 0; // Runtime index.
         int src_channel = 0; // Channel index.
         int src_bank = 0; // Bank index.
-        // Iterate over range MainPendulum.P2.d_theta(0,1).
+        // Iterate over range MainPendulum.P3.d_theta(0,1).
         {
             int dst_runtime = 0; // Runtime index.
             int dst_channel = 0; // Channel index.
             int dst_bank = 0; // Bank index.
             int range_count = 0;
-            mainpendulum_p2_self[dst_runtime]->_lf_d_theta = (pendulumcontroller_d_theta_t*)&mainpendulum_p1_self[src_runtime]->_lf_d_theta;
+            mainpendulum_p3_self[dst_runtime]->_lf_d_theta = (pendulumcontroller_d_theta_t*)&mainpendulum_p1_self[src_runtime]->_lf_d_theta;
         }
     }
     // Connect MainPendulum.P1.phi(0,1)->[MainPendulum.P2.phi(0,1), MainPendulum.P3.phi(0,1)] to port MainPendulum.P2.phi(0,1)
@@ -1248,7 +1253,7 @@ void _lf_initialize_trigger_objects() {
             int dst_channel = 0; // Channel index.
             int dst_bank = 0; // Bank index.
             int range_count = 0;
-            mainpendulum_p2_self[dst_runtime]->_lf_phi = (pendulumcontroller_phi_t*)&mainpendulum_p1_self[src_runtime]->_lf_phi;
+            mainpendulum_p2_self[dst_runtime]->_lf_phi = (print_phi_t*)&mainpendulum_p1_self[src_runtime]->_lf_phi;
         }
     }
     // Connect MainPendulum.P1.phi(0,1)->[MainPendulum.P2.phi(0,1), MainPendulum.P3.phi(0,1)] to port MainPendulum.P3.phi(0,1)
@@ -1263,27 +1268,43 @@ void _lf_initialize_trigger_objects() {
             int dst_channel = 0; // Channel index.
             int dst_bank = 0; // Bank index.
             int range_count = 0;
-            mainpendulum_p3_self[dst_runtime]->_lf_phi = (print_phi_t*)&mainpendulum_p1_self[src_runtime]->_lf_phi;
+            mainpendulum_p3_self[dst_runtime]->_lf_phi = (pendulumcontroller_phi_t*)&mainpendulum_p1_self[src_runtime]->_lf_phi;
         }
     }
-    // Connect MainPendulum.P1.d_phi(0,1)->[MainPendulum.P2.d_phi(0,1)] to port MainPendulum.P2.d_phi(0,1)
-    // Iterate over ranges MainPendulum.P1.d_phi(0,1)->[MainPendulum.P2.d_phi(0,1)] and MainPendulum.P2.d_phi(0,1).
+    // Connect MainPendulum.P1.d_phi(0,1)->[MainPendulum.P3.d_phi(0,1)] to port MainPendulum.P3.d_phi(0,1)
+    // Iterate over ranges MainPendulum.P1.d_phi(0,1)->[MainPendulum.P3.d_phi(0,1)] and MainPendulum.P3.d_phi(0,1).
     {
         int src_runtime = 0; // Runtime index.
         int src_channel = 0; // Channel index.
         int src_bank = 0; // Bank index.
-        // Iterate over range MainPendulum.P2.d_phi(0,1).
+        // Iterate over range MainPendulum.P3.d_phi(0,1).
         {
             int dst_runtime = 0; // Runtime index.
             int dst_channel = 0; // Channel index.
             int dst_bank = 0; // Bank index.
             int range_count = 0;
-            mainpendulum_p2_self[dst_runtime]->_lf_d_phi = (pendulumcontroller_d_phi_t*)&mainpendulum_p1_self[src_runtime]->_lf_d_phi;
+            mainpendulum_p3_self[dst_runtime]->_lf_d_phi = (pendulumcontroller_d_phi_t*)&mainpendulum_p1_self[src_runtime]->_lf_d_phi;
         }
     }
     // Connect inputs and outputs for reactor MainPendulum.P2.
-    // Connect MainPendulum.P2.u(0,1)->[MainPendulum.P1.u(0,1), MainPendulum.P3.control(0,1)] to port MainPendulum.P1.u(0,1)
-    // Iterate over ranges MainPendulum.P2.u(0,1)->[MainPendulum.P1.u(0,1), MainPendulum.P3.control(0,1)] and MainPendulum.P1.u(0,1).
+    // Connect inputs and outputs for reactor MainPendulum.P3.
+    // Connect MainPendulum.P3.u(0,1)->[MainPendulum.P2.control(0,1), MainPendulum.P1.u(0,1)] to port MainPendulum.P2.control(0,1)
+    // Iterate over ranges MainPendulum.P3.u(0,1)->[MainPendulum.P2.control(0,1), MainPendulum.P1.u(0,1)] and MainPendulum.P2.control(0,1).
+    {
+        int src_runtime = 0; // Runtime index.
+        int src_channel = 0; // Channel index.
+        int src_bank = 0; // Bank index.
+        // Iterate over range MainPendulum.P2.control(0,1).
+        {
+            int dst_runtime = 0; // Runtime index.
+            int dst_channel = 0; // Channel index.
+            int dst_bank = 0; // Bank index.
+            int range_count = 0;
+            mainpendulum_p2_self[dst_runtime]->_lf_control = (print_control_t*)&mainpendulum_p3_self[src_runtime]->_lf_u;
+        }
+    }
+    // Connect MainPendulum.P3.u(0,1)->[MainPendulum.P2.control(0,1), MainPendulum.P1.u(0,1)] to port MainPendulum.P1.u(0,1)
+    // Iterate over ranges MainPendulum.P3.u(0,1)->[MainPendulum.P2.control(0,1), MainPendulum.P1.u(0,1)] and MainPendulum.P1.u(0,1).
     {
         int src_runtime = 0; // Runtime index.
         int src_channel = 0; // Channel index.
@@ -1294,25 +1315,9 @@ void _lf_initialize_trigger_objects() {
             int dst_channel = 0; // Channel index.
             int dst_bank = 0; // Bank index.
             int range_count = 0;
-            mainpendulum_p1_self[dst_runtime]->_lf_u = (pendulumsimulation_u_t*)&mainpendulum_p2_self[src_runtime]->_lf_u;
+            mainpendulum_p1_self[dst_runtime]->_lf_u = (pendulumsimulation_u_t*)&mainpendulum_p3_self[src_runtime]->_lf_u;
         }
     }
-    // Connect MainPendulum.P2.u(0,1)->[MainPendulum.P1.u(0,1), MainPendulum.P3.control(0,1)] to port MainPendulum.P3.control(0,1)
-    // Iterate over ranges MainPendulum.P2.u(0,1)->[MainPendulum.P1.u(0,1), MainPendulum.P3.control(0,1)] and MainPendulum.P3.control(0,1).
-    {
-        int src_runtime = 0; // Runtime index.
-        int src_channel = 0; // Channel index.
-        int src_bank = 0; // Bank index.
-        // Iterate over range MainPendulum.P3.control(0,1).
-        {
-            int dst_runtime = 0; // Runtime index.
-            int dst_channel = 0; // Channel index.
-            int dst_bank = 0; // Bank index.
-            int range_count = 0;
-            mainpendulum_p3_self[dst_runtime]->_lf_control = (print_control_t*)&mainpendulum_p2_self[src_runtime]->_lf_u;
-        }
-    }
-    // Connect inputs and outputs for reactor MainPendulum.P3.
     {
     }
     {
@@ -1339,8 +1344,8 @@ void _lf_initialize_trigger_objects() {
     {
         int count = 0;
         {
-            // Add port MainPendulum.P2.u to array of is_present fields.
-            _lf_is_present_fields[4 + count] = &mainpendulum_p2_self[0]->_lf_u.is_present;
+            // Add port MainPendulum.P3.u to array of is_present fields.
+            _lf_is_present_fields[4 + count] = &mainpendulum_p3_self[0]->_lf_u.is_present;
             count++;
         }
     }
@@ -1364,24 +1369,24 @@ void _lf_initialize_trigger_objects() {
         // Set reaction priorities for ReactorInstance MainPendulum.P2
         {
             mainpendulum_p2_self[0]->_lf__reaction_0.chain_id = 1;
-            // index is the OR of level 1 and 
+            // index is the OR of level 0 and 
             // deadline 140737488355327 shifted left 16 bits.
-            mainpendulum_p2_self[0]->_lf__reaction_0.index = 0x7fffffffffff0001LL;
+            mainpendulum_p2_self[0]->_lf__reaction_0.index = 0x7fffffffffff0000LL;
+            mainpendulum_p2_self[0]->_lf__reaction_1.chain_id = 1;
+            // index is the OR of level 2 and 
+            // deadline 140737488355327 shifted left 16 bits.
+            mainpendulum_p2_self[0]->_lf__reaction_1.index = 0x7fffffffffff0002LL;
+            mainpendulum_p2_self[0]->_lf__reaction_2.chain_id = 1;
+            // index is the OR of level 3 and 
+            // deadline 140737488355327 shifted left 16 bits.
+            mainpendulum_p2_self[0]->_lf__reaction_2.index = 0x7fffffffffff0003LL;
         }
         // Set reaction priorities for ReactorInstance MainPendulum.P3
         {
             mainpendulum_p3_self[0]->_lf__reaction_0.chain_id = 1;
-            // index is the OR of level 0 and 
+            // index is the OR of level 1 and 
             // deadline 140737488355327 shifted left 16 bits.
-            mainpendulum_p3_self[0]->_lf__reaction_0.index = 0x7fffffffffff0000LL;
-            mainpendulum_p3_self[0]->_lf__reaction_1.chain_id = 1;
-            // index is the OR of level 2 and 
-            // deadline 140737488355327 shifted left 16 bits.
-            mainpendulum_p3_self[0]->_lf__reaction_1.index = 0x7fffffffffff0002LL;
-            mainpendulum_p3_self[0]->_lf__reaction_2.chain_id = 1;
-            // index is the OR of level 3 and 
-            // deadline 140737488355327 shifted left 16 bits.
-            mainpendulum_p3_self[0]->_lf__reaction_2.index = 0x7fffffffffff0003LL;
+            mainpendulum_p3_self[0]->_lf__reaction_0.index = 0x7fffffffffff0001LL;
         }
     }
     // Initialize the scheduler

@@ -8,14 +8,13 @@
 preamble {=
     #include <math.h>
     #define PI 3.14159265
-
-    // Really checks sign. True is 1, False is 0.
-    double sign_1(double x) {
+    
+    double sign(double x) {
             return (x > 0.0) - (x < 0.0); 
     }
 
     double restrictAngle(double theta) {
-            return((fmod(fabs(theta) + PI, 2 * PI) - PI) * sign_1(theta));
+            return((fmod(fabs(theta) + PI, 2 * PI) - PI) * sign(theta));
     }
 =}
 
