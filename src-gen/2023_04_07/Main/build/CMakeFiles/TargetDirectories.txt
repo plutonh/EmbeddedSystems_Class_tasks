@@ -1,0 +1,14 @@
+/home/plutonh/project/src-gen/2023_04_07/Main/build/CMakeFiles/Main.dir
+/home/plutonh/project/src-gen/2023_04_07/Main/build/CMakeFiles/edit_cache.dir
+/home/plutonh/project/src-gen/2023_04_07/Main/build/CMakeFiles/rebuild_cache.dir
+/home/plutonh/project/src-gen/2023_04_07/Main/build/CMakeFiles/list_install_components.dir
+/home/plutonh/project/src-gen/2023_04_07/Main/build/CMakeFiles/install.dir
+/home/plutonh/project/src-gen/2023_04_07/Main/build/CMakeFiles/install/local.dir
+/home/plutonh/project/src-gen/2023_04_07/Main/build/CMakeFiles/install/strip.dir
+/home/plutonh/project/src-gen/2023_04_07/Main/build/core/CMakeFiles/core.dir
+/home/plutonh/project/src-gen/2023_04_07/Main/build/core/CMakeFiles/edit_cache.dir
+/home/plutonh/project/src-gen/2023_04_07/Main/build/core/CMakeFiles/rebuild_cache.dir
+/home/plutonh/project/src-gen/2023_04_07/Main/build/core/CMakeFiles/list_install_components.dir
+/home/plutonh/project/src-gen/2023_04_07/Main/build/core/CMakeFiles/install.dir
+/home/plutonh/project/src-gen/2023_04_07/Main/build/core/CMakeFiles/install/local.dir
+/home/plutonh/project/src-gen/2023_04_07/Main/build/core/CMakeFiles/install/strip.dir

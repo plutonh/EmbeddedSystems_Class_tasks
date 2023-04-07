@@ -1,0 +1,167 @@
+target C {keepalive: true};
+
+preamble {=
+    #include <stdio.h>
+    struct {
+        void* open;
+        void* close;
+        void* ready;
+        void* not;
+    } buttons;
+    
+    void* read_input(void* arg) {
+        printf("***************************************************************\n");
+        printf("Press 'o' and hit return or enter to open the door\n");
+        printf("Press 'c' and hit return or enter to close the door\n");
+        printf("Press 'r' and hit return or enter to open the ramp\n");
+        printf("Press 'n' and hit return or enter to close the ramp\n");
+        printf("Press 'Control-d' to exit\n");
+        while(1) {
+            int c = getchar();
+            if (c == 'o') {
+                lf_schedule(buttons.open, 0);
+            }
+            if (c == 'c') {
+                lf_schedule(buttons.close, 0);
+            }
+            if (c == 'r') {
+                lf_schedule(buttons.ready, 0);
+            }
+            if (c == 'n') {
+                lf_schedule(buttons.not, 0);
+            }
+            if (c == EOF) {
+                break;
+            }
+        }
+        lf_request_stop();
+        return NULL;
+    }
+=}
+
+reactor Cockpit {
+    output open:bool; // Produces a bool to issue a command to open or close the door.
+    physical action open_check;  // Aciton to determine if the 'door' is already open.
+    physical action close_check; // Aciton to determine if the 'door' is already close.
+
+    reaction(startup) -> open_check, close_check {=
+        // Activaing 'read_input' function for receiving input character.
+        lf_thread_t thread_id;
+        lf_thread_create(&thread_id, &read_input, NULL);
+        buttons.open = open_check;   // Causes an action for the 'o' character.
+        buttons.close = close_check; // Causes an action for the 'c' character.
+    =}
+    
+    // When 'o' character is inputted, an action that opens the door occurs 
+    // and saves 'true' in the 'open'.
+    reaction(open_check) -> open {=
+        lf_set(open, true);
+    =}
+    
+    // When 'c' character is inputted, an action that closes the door occurs 
+    // and saves 'false' in the 'open'.
+    reaction(close_check) -> open {=
+        lf_set(open, false);
+    =}
+}
+
+reactor VisionMonitor {
+    output ramp:bool; // Produces a bool to issue a command to open or close the ramp.
+    physical action open_check;  // Aciton to determine if the 'ramp' is already open.
+    physical action close_check; // Aciton to determine if the 'ramp' is already close.
+
+    reaction(startup) -> open_check, close_check {=
+        buttons.ready = open_check; // Causes an action for the 'r' character.
+        buttons.not = close_check;  // Causes an action for the 'n' character.
+    =}
+    
+    // When 'r' character is inputted, an action that opens the ramp occurs 
+    // and saves 'true' in the 'ramp'.
+    reaction(open_check) -> ramp {=
+        lf_set(ramp, true);
+    =}
+    
+    // When 'r' character is inputted, an action that closes the ramp occurs 
+    // and saves 'false' in the 'ramp'.
+    reaction(close_check) -> ramp {=
+        lf_set(ramp, false);
+    =}
+}
+
+reactor Door {
+    input open:bool;
+    input disarm:bool;
+
+    state door_opened:bool(false); // Variable to determine if a door is already open
+    state door_closed:bool(true);  // Variable to determine if a door is already close
+    state ramp_opened:bool(false); // Variable to determine if a ramp is already open
+    state ramp_closed:bool(true);  // Variable to determine if a ramp is already close
+
+    state timestamp:time(0);       // Variable to store the first time the character 'o' was entered
+
+    reaction(open) {=
+        // If the time at which the currently entered open action occurred 
+        // is less than 2 seconds after subtracting the stored variable from 
+        // the time at which the previously entered open action occurred, 
+        // an emergency situation is executed.
+        if(open->value && (lf_time_logical_elapsed() - self->timestamp) < SECS(2)) {
+            printf("%ld nsec: Emergency Open!!\n", lf_time_logical_elapsed());
+            self->door_opened = true;
+            self->door_closed = false;
+        }
+
+        // Conditions to determine if a door is already open
+        else if(open->value && self->door_opened) {
+            printf("%ld nsec: Door already open\n", lf_time_logical_elapsed());
+        }
+
+        // Conditions for checking the situation to open the door
+        else if(open->value && self->door_opened == false && self->ramp_opened) {
+            printf("%ld nsec: Opening Door\n", lf_time_logical_elapsed());
+            self->door_opened = true;
+            self->door_closed = false;
+        }
+
+        // Conditions to determine if the ramp is detected before opening the door
+        else if(open->value && self->door_opened == false && self->ramp_closed) {
+            printf("%ld nsec: No ramp detected\n", lf_time_logical_elapsed());
+        }
+
+        // Conditions to determine if the door is already closed
+        else if(open->value == false && self->door_closed) {
+            printf("%ld nsec: Door already close\n", lf_time_logical_elapsed());
+        }
+
+        // Conditions to check the situation to close the door
+        else {
+            printf("%ld nsec: Closing Door\n", lf_time_logical_elapsed());
+            self->door_closed = true;
+            self->door_opened = false;
+        }
+
+        // Save the time when an action occurred through the first 'o'
+        self->timestamp = lf_time_logical_elapsed();
+    =}
+
+    reaction(disarm) {= // armed: ramp doesn't exist, disarmed: ramp exists
+        if(disarm->value) {
+            printf("%ld nsec: Ramp ready: true\n", lf_time_logical_elapsed());
+            self->ramp_opened = true;
+            self->ramp_closed = false;
+        }
+        else {
+            printf("%ld nsec: Ramp ready: false\n", lf_time_logical_elapsed());
+            self->ramp_closed = true;
+            self->ramp_opened = false;
+        }
+    =}
+}
+
+main reactor Main { // The 'Main' reactor for declaring and managing each reactor
+    C = new Cockpit();
+    V = new VisionMonitor();
+    D = new Door();
+
+    C.open -> D.open;
+    V.ramp -> D.disarm;
+}

@@ -1,0 +1,1 @@
+/usr/bin/cc -O3 -DNDEBUG CMakeFiles/Main.dir/lib/schedule.c.o CMakeFiles/Main.dir/Main.c.o -o Main  core/libcore.a 
