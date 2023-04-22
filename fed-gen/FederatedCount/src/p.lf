@@ -1,0 +1,49 @@
+target C {
+    threading: true,
+    compile-definitions: {
+        EXECUTABLE_PREAMBLE: "",
+        WORKERS_NEEDED_FOR_FEDERATE: "2",
+        NUMBER_OF_FEDERATES: "2",
+        FEDERATED: "",
+        FEDERATED_CENTRALIZED: ""
+    },
+    cmake-include: "include/p_extension.cmake",
+    _fed_setup: "include/_p_preamble.h",
+    keepalive: true
+}
+
+
+reactor Print {
+    input in: int
+
+    reaction(
+        in
+    ) {=
+        lf_print("Received: %d at (%lld, %d)", in->value,
+            lf_time_logical_elapsed(), lf_tag().microstep
+        );
+    =}
+}
+@_fed_config(network_message_actions="networkMessage")
+main reactor  {
+
+    p = new Print()
+    
+    logical action inputControlReactionTrigger
+    logical action networkMessage: int
+    
+    
+    @_unordered
+    reaction(inputControlReactionTrigger) -> p.in {=
+        // **** This reaction is unordered.
+        interval_t max_STP = 0LL;
+        // Wait until the port status is known
+        wait_until_port_status_known(0, max_STP);
+    =}
+    @_unordered
+    reaction(networkMessage) -> p.in {=
+        // **** This reaction is unordered.
+        p.in->physical_time_of_arrival = self->_lf__networkMessage.physical_time_of_arrival;
+        lf_set(p.in, networkMessage->value);
+    =}
+}

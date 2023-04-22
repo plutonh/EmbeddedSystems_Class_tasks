@@ -1,0 +1,53 @@
+target C {
+    threading: true,
+    compile-definitions: {
+        EXECUTABLE_PREAMBLE: "",
+        WORKERS_NEEDED_FOR_FEDERATE: "1",
+        NUMBER_OF_FEDERATES: "2",
+        FEDERATED: "",
+        FEDERATED_CENTRALIZED: ""
+    },
+    cmake-include: "include/c_extension.cmake",
+    _fed_setup: "include/_c_preamble.h",
+    keepalive: true
+}
+
+
+reactor Count {
+    output out: int
+    state c: int(0)
+    timer t(0, 1 sec)
+
+    reaction(t) ->
+    out {= lf_set(out, self->c++); =}
+}
+@_fed_config(network_message_actions="")
+main reactor  {
+
+    c = new Count()
+    
+    logical action outputControlReactionTrigger
+    
+    
+    @_unordered
+    reaction(c.out) {=
+        // **** This reaction is unordered.
+        // Sending from c.out in federate c to p.in in federate p
+        if (!c.out->is_present) return;
+        size_t message_length = sizeof(int);
+        send_timed_message(NEVER, MSG_TYPE_TAGGED_MESSAGE, 0, 1, "federate 1 via the RTI", message_length, (unsigned char*)&c.out->value);
+    =}
+    @_unordered
+    reaction(outputControlReactionTrigger) c.out {=
+        // **** This reaction is unordered.
+        // If the output port has not been lf_set for the current logical time,
+        // send an ABSENT message to the receiving federate
+        LF_PRINT_LOG("Contemplating whether to send port "
+                  "absent for port %d to federate %d.",
+                  0, 1);
+        if (c.out == NULL || !c.out->is_present) {
+            // The output port is NULL or it is not present.
+            send_port_absent_to_federate(NEVER, 0, 1);
+        }
+    =}
+}
