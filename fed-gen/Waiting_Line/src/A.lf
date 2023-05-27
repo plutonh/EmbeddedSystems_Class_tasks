@@ -1,0 +1,117 @@
+target C {
+    compile-definitions: {
+        EXECUTABLE_PREAMBLE: "",
+        WORKERS_NEEDED_FOR_FEDERATE: "4",
+        NUMBER_OF_FEDERATES: "5",
+        FEDERATED: "",
+        FEDERATED_CENTRALIZED: ""
+    },
+    threading: true,
+    keepalive: true,
+    _fed_setup: "include/_A_preamble.h",
+    cmake-include: "include/A_extension.cmake"
+}
+
+
+reactor Arbiter {
+    input sensor_1: bool
+    input sensor_2: bool
+    input control: int
+    output result: int
+}
+@_fed_config(network_message_actions="networkMessage_1,networkMessage_2,networkMessage_3")
+main reactor  {
+
+    A = new Arbiter()
+    
+    logical action outputControlReactionTrigger
+    logical action inputControlReactionTrigger_1
+    logical action networkMessage_1: bool
+    logical action inputControlReactionTrigger_2
+    logical action networkMessage_2: bool
+    logical action inputControlReactionTrigger_3
+    logical action networkMessage_3: int
+    
+    
+    @_unordered
+    reaction(A.result) {=
+        // **** This reaction is unordered.
+        // Sending from A.result in federate A to H.result in federate H
+        if (!A.result->is_present) return;
+        size_t message_length = sizeof(int);
+        send_timed_message(NEVER, MSG_TYPE_TAGGED_MESSAGE, 0, 3, "federate 3 via the RTI", message_length, (unsigned char*)&A.result->value);
+    =}
+    @_unordered
+    reaction(outputControlReactionTrigger) A.result {=
+        // **** This reaction is unordered.
+        // If the output port has not been lf_set for the current logical time,
+        // send an ABSENT message to the receiving federate
+        LF_PRINT_LOG("Contemplating whether to send port "
+                  "absent for port %d to federate %d.",
+                  0, 3);
+        if (A.result == NULL || !A.result->is_present) {
+            // The output port is NULL or it is not present.
+            send_port_absent_to_federate(NEVER, 0, 3);
+        }
+    =}
+    @_unordered
+    reaction(A.result) {=
+        // **** This reaction is unordered.
+        // Sending from A.result in federate A to SM.result in federate SM
+        if (!A.result->is_present) return;
+        size_t message_length = sizeof(int);
+        send_timed_message(NEVER, MSG_TYPE_TAGGED_MESSAGE, 0, 4, "federate 4 via the RTI", message_length, (unsigned char*)&A.result->value);
+    =}
+    @_unordered
+    reaction(outputControlReactionTrigger) A.result {=
+        // **** This reaction is unordered.
+        // If the output port has not been lf_set for the current logical time,
+        // send an ABSENT message to the receiving federate
+        LF_PRINT_LOG("Contemplating whether to send port "
+                  "absent for port %d to federate %d.",
+                  0, 4);
+        if (A.result == NULL || !A.result->is_present) {
+            // The output port is NULL or it is not present.
+            send_port_absent_to_federate(NEVER, 0, 4);
+        }
+    =}
+    @_unordered
+    reaction(inputControlReactionTrigger_1) -> A.sensor_1 {=
+        // **** This reaction is unordered.
+        interval_t max_STP = 0LL;
+        // Wait until the port status is known
+        wait_until_port_status_known(0, max_STP);
+    =}
+    @_unordered
+    reaction(networkMessage_1) -> A.sensor_1 {=
+        // **** This reaction is unordered.
+        A.sensor_1->physical_time_of_arrival = self->_lf__networkMessage_1.physical_time_of_arrival;
+        lf_set(A.sensor_1, networkMessage_1->value);
+    =}
+    @_unordered
+    reaction(inputControlReactionTrigger_2) -> A.sensor_2 {=
+        // **** This reaction is unordered.
+        interval_t max_STP = 0LL;
+        // Wait until the port status is known
+        wait_until_port_status_known(1, max_STP);
+    =}
+    @_unordered
+    reaction(networkMessage_2) -> A.sensor_2 {=
+        // **** This reaction is unordered.
+        A.sensor_2->physical_time_of_arrival = self->_lf__networkMessage_2.physical_time_of_arrival;
+        lf_set(A.sensor_2, networkMessage_2->value);
+    =}
+    @_unordered
+    reaction(inputControlReactionTrigger_3) -> A.control {=
+        // **** This reaction is unordered.
+        interval_t max_STP = 0LL;
+        // Wait until the port status is known
+        wait_until_port_status_known(2, max_STP);
+    =}
+    @_unordered
+    reaction(networkMessage_3) -> A.control {=
+        // **** This reaction is unordered.
+        A.control->physical_time_of_arrival = self->_lf__networkMessage_3.physical_time_of_arrival;
+        lf_set(A.control, networkMessage_3->value);
+    =}
+}

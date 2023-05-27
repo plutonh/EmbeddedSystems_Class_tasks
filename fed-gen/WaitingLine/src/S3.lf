@@ -1,0 +1,48 @@
+target C {
+    compile-definitions: {
+        EXECUTABLE_PREAMBLE: "",
+        WORKERS_NEEDED_FOR_FEDERATE: "1",
+        NUMBER_OF_FEDERATES: "7",
+        FEDERATED: "",
+        FEDERATED_CENTRALIZED: ""
+    },
+    threading: true,
+    _fed_setup: "include/_S3_preamble.h",
+    keepalive: true,
+    cmake-include: "include/S3_extension.cmake"
+}
+
+
+reactor Sensor3 {
+    output blocked: bool
+}
+@_fed_config(network_message_actions="")
+main reactor  {
+
+    S3 = new Sensor3()
+    
+    logical action outputControlReactionTrigger
+    
+    
+    @_unordered
+    reaction(S3.blocked) {=
+        // **** This reaction is unordered.
+        // Sending from S3.blocked in federate S3 to A.sensor_3 in federate A
+        if (!S3.blocked->is_present) return;
+        size_t message_length = sizeof(bool);
+        send_timed_message(NEVER, MSG_TYPE_TAGGED_MESSAGE, 2, 0, "federate 0 via the RTI", message_length, (unsigned char*)&S3.blocked->value);
+    =}
+    @_unordered
+    reaction(outputControlReactionTrigger) S3.blocked {=
+        // **** This reaction is unordered.
+        // If the output port has not been lf_set for the current logical time,
+        // send an ABSENT message to the receiving federate
+        LF_PRINT_LOG("Contemplating whether to send port "
+                  "absent for port %d to federate %d.",
+                  2, 0);
+        if (S3.blocked == NULL || !S3.blocked->is_present) {
+            // The output port is NULL or it is not present.
+            send_port_absent_to_federate(NEVER, 2, 0);
+        }
+    =}
+}

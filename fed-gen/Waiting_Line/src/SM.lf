@@ -1,0 +1,41 @@
+target C {
+    compile-definitions: {
+        EXECUTABLE_PREAMBLE: "",
+        WORKERS_NEEDED_FOR_FEDERATE: "2",
+        NUMBER_OF_FEDERATES: "5",
+        FEDERATED: "",
+        FEDERATED_CENTRALIZED: ""
+    },
+    threading: true,
+    keepalive: true,
+    _fed_setup: "include/_SM_preamble.h",
+    cmake-include: "include/SM_extension.cmake"
+}
+
+
+reactor Step_Motor {
+    input result: int
+}
+@_fed_config(network_message_actions="networkMessage_0")
+main reactor  {
+
+    SM = new Step_Motor()
+    
+    logical action inputControlReactionTrigger_0
+    logical action networkMessage_0: int
+    
+    
+    @_unordered
+    reaction(inputControlReactionTrigger_0) -> SM.result {=
+        // **** This reaction is unordered.
+        interval_t max_STP = 0LL;
+        // Wait until the port status is known
+        wait_until_port_status_known(0, max_STP);
+    =}
+    @_unordered
+    reaction(networkMessage_0) -> SM.result {=
+        // **** This reaction is unordered.
+        SM.result->physical_time_of_arrival = self->_lf__networkMessage_0.physical_time_of_arrival;
+        lf_set(SM.result, networkMessage_0->value);
+    =}
+}

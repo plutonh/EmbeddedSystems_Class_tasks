@@ -1,0 +1,64 @@
+target C {
+    compile-definitions: {
+        EXECUTABLE_PREAMBLE: "",
+        WORKERS_NEEDED_FOR_FEDERATE: "2",
+        NUMBER_OF_FEDERATES: "7",
+        FEDERATED: "",
+        FEDERATED_CENTRALIZED: ""
+    },
+    threading: true,
+    _fed_setup: "include/_H_preamble.h",
+    keepalive: true,
+    cmake-include: "include/H_extension.cmake"
+}
+
+
+reactor HTTPServer {
+    input result: int
+    output control: int
+}
+@_fed_config(network_message_actions="networkMessage")
+main reactor  {
+
+    H = new HTTPServer()
+    
+    logical action outputControlReactionTrigger
+    logical action inputControlReactionTrigger
+    logical action networkMessage: int
+    
+    
+    @_unordered
+    reaction(inputControlReactionTrigger) -> H.result {=
+        // **** This reaction is unordered.
+        interval_t max_STP = 0LL;
+        // Wait until the port status is known
+        wait_until_port_status_known(0, max_STP);
+    =}
+    @_unordered
+    reaction(networkMessage) -> H.result {=
+        // **** This reaction is unordered.
+        H.result->physical_time_of_arrival = self->_lf__networkMessage.physical_time_of_arrival;
+        lf_set(H.result, networkMessage->value);
+    =}
+    @_unordered
+    reaction(H.control) {=
+        // **** This reaction is unordered.
+        // Sending from H.control in federate H to A.control in federate A
+        if (!H.control->is_present) return;
+        size_t message_length = sizeof(int);
+        send_timed_message(NEVER, MSG_TYPE_TAGGED_MESSAGE, 4, 0, "federate 0 via the RTI", message_length, (unsigned char*)&H.control->value);
+    =}
+    @_unordered
+    reaction(outputControlReactionTrigger) H.control {=
+        // **** This reaction is unordered.
+        // If the output port has not been lf_set for the current logical time,
+        // send an ABSENT message to the receiving federate
+        LF_PRINT_LOG("Contemplating whether to send port "
+                  "absent for port %d to federate %d.",
+                  4, 0);
+        if (H.control == NULL || !H.control->is_present) {
+            // The output port is NULL or it is not present.
+            send_port_absent_to_federate(NEVER, 4, 0);
+        }
+    =}
+}
